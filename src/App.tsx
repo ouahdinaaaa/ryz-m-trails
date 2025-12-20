@@ -10,6 +10,10 @@ import Association from "./pages/Association";
 import Joelette from "./pages/Joelette";
 import Engager from "./pages/Engager";
 import Contact from "./pages/Contact";
+import VisionValeurs from "./pages/VisionValeurs";
+import Actions from "./pages/Actions";
+import Evenements from "./pages/Evenements";
+import Projets from "./pages/Projets";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -28,6 +32,10 @@ const App = () => (
           <Route path="/joelette" element={<Joelette />} />
           <Route path="/engager" element={<Engager />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/vision-valeurs" element={<VisionValeurs />} />
+          <Route path="/actions" element={<Actions />} />
+          <Route path="/evenements" element={<Evenements />} />
+          <Route path="/projets" element={<Projets />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

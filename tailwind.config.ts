@@ -112,6 +112,22 @@ export default {
           from: { strokeDashoffset: "1000" },
           to: { strokeDashoffset: "0" },
         },
+        "word-reveal": {
+          from: { opacity: "0", transform: "translateY(10px)", filter: "blur(4px)" },
+          to: { opacity: "1", transform: "translateY(0)", filter: "blur(0)" },
+        },
+        "parallax-slow": {
+          "0%": { transform: "translateY(0)" },
+          "100%": { transform: "translateY(-20px)" },
+        },
+        "memory-appear": {
+          from: { opacity: "0", transform: "scale(0.9) rotate(-2deg)", filter: "blur(4px)" },
+          to: { opacity: "1", transform: "scale(1) rotate(0)", filter: "blur(0)" },
+        },
+        "handwriting": {
+          from: { opacity: "0", clipPath: "inset(0 100% 0 0)" },
+          to: { opacity: "1", clipPath: "inset(0 0 0 0)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -122,6 +138,9 @@ export default {
         "scale-in": "scale-in 0.4s ease-out forwards",
         "float": "float 6s ease-in-out infinite",
         "draw-line": "draw-line 1.5s ease-out forwards",
+        "word-reveal": "word-reveal 0.6s ease-out forwards",
+        "memory-appear": "memory-appear 1s ease-out forwards",
+        "handwriting": "handwriting 1.2s ease-out forwards",
       },
     },
   },

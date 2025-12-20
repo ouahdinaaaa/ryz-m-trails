@@ -134,10 +134,28 @@ const Contact = () => {
               <ScrollReveal direction="right">
                 <div className="bg-secondary/50 rounded-2xl p-8">
                   <h2 className="font-display text-3xl font-semibold text-earth mb-6">
-                    Nous contacter directement
+                    Contacts Officiels
                   </h2>
                   
                   <div className="space-y-6">
+                    <div className="p-4 bg-card rounded-xl">
+                      <p className="font-display text-lg text-foreground font-semibold">
+                        Président
+                      </p>
+                      <p className="font-body text-muted-foreground">
+                        À votre écoute pour toute question stratégique
+                      </p>
+                    </div>
+                    
+                    <div className="p-4 bg-card rounded-xl">
+                      <p className="font-display text-lg text-foreground font-semibold">
+                        Trésorier
+                      </p>
+                      <p className="font-body text-muted-foreground">
+                        Pour les dons et partenariats financiers
+                      </p>
+                    </div>
+                    
                     <a 
                       href="mailto:contact@ryzom.org"
                       className="flex items-center gap-4 p-4 bg-card rounded-xl hover:shadow-soft transition-all group"
@@ -161,10 +179,10 @@ const Contact = () => {
                       </div>
                       <div>
                         <p className="font-display text-lg text-foreground">
-                          France
+                          France entière
                         </p>
                         <p className="font-body text-sm text-muted-foreground">
-                          Nous intervenons dans toute la France
+                          Nous intervenons partout
                         </p>
                       </div>
                     </div>
@@ -177,14 +195,16 @@ const Contact = () => {
                   <div className="flex items-center gap-3 mb-4">
                     <Heart className="text-orange fill-orange" size={24} />
                     <h3 className="font-display text-2xl font-semibold">
-                      Un message rassurant
+                      Collaborons ensemble
                     </h3>
                   </div>
-                  <p className="font-body leading-relaxed">
-                    Que vous soyez sportif confirmé ou débutant, que vous ayez beaucoup 
-                    de temps ou juste quelques heures à offrir, il y a une place pour 
-                    vous dans notre aventure. N'hésitez pas à nous écrire, nous répondons 
-                    à tous les messages avec le sourire !
+                  <p className="font-body leading-relaxed mb-4">
+                    Que vous soyez une institution, une entreprise, une école ou un particulier, 
+                    nous sommes ouverts à toutes les collaborations. Inventons ensemble de nouvelles 
+                    façons de rendre l'aventure accessible à tous !
+                  </p>
+                  <p className="font-display text-orange text-lg italic">
+                    « Chaque message est une porte qui s'ouvre. »
                   </p>
                 </div>
               </ScrollReveal>

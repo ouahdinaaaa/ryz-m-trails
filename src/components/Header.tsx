@@ -4,10 +4,12 @@ import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navItems = [
-  { label: "L'Association", href: "/association" },
+  { label: "Vision & Valeurs", href: "/vision-valeurs" },
   { label: "La Joëlette", href: "/joelette" },
-  { label: "Histoires", href: "/histoires" },
-  { label: "S'engager", href: "/engager" },
+  { label: "Nos Actions", href: "/actions" },
+  { label: "Événements", href: "/evenements" },
+  { label: "Projets", href: "/projets" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export function Header() {

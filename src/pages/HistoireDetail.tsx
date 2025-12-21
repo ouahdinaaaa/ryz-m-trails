@@ -2,7 +2,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { Link, useParams } from "react-router-dom";
-import { ArrowLeft, Clock, Calendar, Tag } from "lucide-react";
+import { ArrowLeft, ArrowRight, Clock, Calendar, Tag } from "lucide-react";
 import storyCourse from "@/assets/story-course.jpg";
 import storyPortrait from "@/assets/story-portrait.jpg";
 import storyChampionnat from "@/assets/story-championnat.jpg";
@@ -117,18 +117,18 @@ const HistoireDetail = () => {
   const article = articles[id as keyof typeof articles] || articles["1"];
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen editorial-layout grain-overlay">
       <Header />
       
-      {/* Breadcrumb & Header */}
-      <section className="pt-28 pb-8">
+      {/* Breadcrumb */}
+      <section className="pt-28 pb-6">
         <div className="container mx-auto px-4">
           <ScrollReveal>
             <Link
               to="/histoires"
-              className="inline-flex items-center gap-2 text-earth hover:text-orange transition-colors font-display mb-6"
+              className="inline-flex items-center gap-2 text-earth hover:text-orange transition-colors font-camping text-xl group"
             >
-              <ArrowLeft size={18} />
+              <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
               Blog &gt; Course inclusive
             </Link>
           </ScrollReveal>
@@ -138,36 +138,33 @@ const HistoireDetail = () => {
       {/* Article */}
       <article className="pb-24">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-3 gap-12">
+          <div className="grid lg:grid-cols-3 gap-12 lg:gap-16">
             {/* Main Content */}
             <div className="lg:col-span-2">
+              {/* Header */}
               <ScrollReveal>
-                <header className="mb-8">
-                  <h1 className="font-display text-4xl md:text-5xl font-bold text-earth mb-4 leading-tight">
+                <header className="mb-10">
+                  <h1 className="title-jungle text-4xl md:text-5xl lg:text-6xl mb-4 leading-tight">
                     {article.title}
                   </h1>
-                  <p className="font-display text-xl text-muted-foreground mb-6">
+                  <p className="font-camping text-2xl md:text-3xl text-earth/60 mb-8">
                     {article.subtitle}
                   </p>
                   
-                  <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-6">
-                    <span className="flex items-center gap-2">
-                      <Calendar size={16} className="text-orange" />
+                  <div className="flex flex-wrap items-center gap-6 text-muted-foreground mb-6">
+                    <span className="flex items-center gap-2 font-camping text-lg">
+                      <Calendar size={18} className="text-orange" />
                       {article.date}
                     </span>
-                    <span className="flex items-center gap-2">
-                      <Clock size={16} className="text-nature" />
+                    <span className="flex items-center gap-2 font-camping text-lg">
+                      <Clock size={18} className="text-nature" />
                       {article.readTime}
                     </span>
                   </div>
                   
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-3">
                     {article.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="inline-flex items-center gap-1 px-3 py-1 bg-secondary rounded-full font-display text-sm text-secondary-foreground"
-                      >
-                        <Tag size={12} />
+                      <span key={tag} className="tag-painted text-sm">
                         {tag}
                       </span>
                     ))}
@@ -175,60 +172,83 @@ const HistoireDetail = () => {
                 </header>
               </ScrollReveal>
 
-              {/* Featured Image */}
+              {/* Featured Image with card-photo effect */}
               <ScrollReveal delay={200}>
-                <div className="relative mb-12 rounded-xl overflow-hidden shadow-card transform rotate-1 hover:rotate-0 transition-transform duration-500">
-                  <img
-                    src={article.image}
-                    alt={article.title}
-                    className="w-full h-auto"
-                  />
+                <div 
+                  className="card-photo mb-12"
+                  style={{ '--rotation': '1deg' } as React.CSSProperties}
+                >
+                  <div className="aspect-[16/10] overflow-hidden">
+                    <img
+                      src={article.image}
+                      alt={article.title}
+                      className="w-full h-full object-cover img-vintage"
+                    />
+                  </div>
                 </div>
               </ScrollReveal>
 
-              {/* Article Content */}
+              {/* Article Content - Journal/Editorial style */}
               <ScrollReveal delay={300}>
                 <div
                   className="prose prose-lg max-w-none
-                    prose-headings:font-display prose-headings:text-earth prose-headings:font-semibold
-                    prose-p:font-body prose-p:text-foreground prose-p:leading-relaxed
-                    prose-blockquote:border-l-4 prose-blockquote:border-orange prose-blockquote:bg-secondary/50 
-                    prose-blockquote:py-4 prose-blockquote:px-6 prose-blockquote:rounded-r-lg
-                    prose-blockquote:font-display prose-blockquote:text-xl prose-blockquote:italic prose-blockquote:text-earth
-                    prose-strong:text-earth
-                    [&_.first-letter]:text-6xl [&_.first-letter]:font-display [&_.first-letter]:text-earth 
-                    [&_.first-letter]:float-left [&_.first-letter]:mr-3 [&_.first-letter]:leading-none
+                    prose-headings:font-marker prose-headings:text-earth prose-headings:mb-6 prose-headings:mt-12
+                    prose-h2:text-3xl prose-h2:md:text-4xl
+                    prose-p:font-body prose-p:text-foreground/85 prose-p:leading-[1.9] prose-p:mb-6
+                    prose-blockquote:border-l-4 prose-blockquote:border-orange prose-blockquote:bg-sand/50 
+                    prose-blockquote:py-6 prose-blockquote:px-8 prose-blockquote:rounded-r-xl prose-blockquote:my-10
+                    prose-blockquote:font-camping prose-blockquote:text-2xl prose-blockquote:italic prose-blockquote:text-earth
+                    prose-blockquote:relative
+                    prose-strong:text-earth prose-strong:font-semibold
+                    [&_.first-letter]:text-7xl [&_.first-letter]:font-marker [&_.first-letter]:text-earth 
+                    [&_.first-letter]:float-left [&_.first-letter]:mr-4 [&_.first-letter]:mt-1 [&_.first-letter]:leading-none
                   "
                   dangerouslySetInnerHTML={{ __html: article.content }}
                 />
+              </ScrollReveal>
+              
+              {/* End CTA */}
+              <ScrollReveal delay={400}>
+                <div className="mt-16 pt-8 border-t border-border/40 text-center">
+                  <Link to="/histoires" className="btn-painted text-xl">
+                    Découvrir d'autres histoires
+                    <ArrowRight size={20} />
+                  </Link>
+                </div>
               </ScrollReveal>
             </div>
 
             {/* Sidebar */}
             <aside className="lg:col-span-1">
-              <div className="sticky top-24 space-y-8">
+              <div className="sticky top-28 space-y-8">
                 {/* Related Stories */}
                 <ScrollReveal direction="right">
-                  <div className="bg-card rounded-xl p-6 shadow-card">
-                    <h3 className="font-display text-xl font-semibold text-earth mb-4">
+                  <div 
+                    className="card-watercolor p-6"
+                    style={{ '--rotation': '-1deg' } as React.CSSProperties}
+                  >
+                    <h3 className="font-marker text-2xl text-earth mb-6 flex items-center gap-2">
+                      <span className="text-orange">→</span>
                       Dernières histoires
                     </h3>
-                    <div className="space-y-4">
+                    <div className="space-y-5">
                       {article.related.map((relId) => {
                         const rel = relatedArticles[relId.toString() as keyof typeof relatedArticles];
                         return (
                           <Link
                             key={relId}
                             to={`/histoires/${relId}`}
-                            className="flex gap-3 group"
+                            className="flex gap-4 group"
                           >
-                            <img
-                              src={rel.image}
-                              alt={rel.title}
-                              className="w-16 h-16 object-cover rounded-lg"
-                            />
-                            <div>
-                              <h4 className="font-display text-sm text-foreground group-hover:text-earth transition-colors line-clamp-2">
+                            <div className="w-20 h-20 flex-shrink-0 rounded-lg overflow-hidden">
+                              <img
+                                src={rel.image}
+                                alt={rel.title}
+                                className="w-full h-full object-cover img-vintage group-hover:scale-105 transition-transform duration-300"
+                              />
+                            </div>
+                            <div className="flex-1">
+                              <h4 className="font-camping text-lg text-earth group-hover:text-orange transition-colors leading-tight">
                                 {rel.title}
                               </h4>
                             </div>
@@ -239,21 +259,37 @@ const HistoireDetail = () => {
                   </div>
                 </ScrollReveal>
 
-                {/* CTA */}
+                {/* CTA Card */}
                 <ScrollReveal direction="right" delay={200}>
-                  <div className="bg-earth rounded-xl p-6 text-primary-foreground">
-                    <h3 className="font-display text-xl font-semibold mb-3">
-                      Découvrez toutes nos histoires
-                    </h3>
-                    <p className="font-body text-sm text-primary-foreground/80 mb-4">
-                      Récits, portraits de ceux et celles qui bâtissent RYZ'ÔM
-                    </p>
-                    <Link
-                      to="/histoires"
-                      className="inline-flex items-center gap-2 bg-orange text-primary-foreground px-4 py-2 rounded-full font-display hover:bg-orange/90 transition-colors"
-                    >
-                      Voir le blog →
-                    </Link>
+                  <div 
+                    className="relative overflow-hidden rounded-xl p-6"
+                    style={{
+                      background: 'linear-gradient(135deg, hsl(var(--earth)) 0%, hsl(var(--earth-light)) 100%)'
+                    }}
+                  >
+                    {/* Grain overlay */}
+                    <div 
+                      className="absolute inset-0 opacity-10"
+                      style={{
+                        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E")`,
+                        mixBlendMode: 'overlay'
+                      }}
+                    />
+                    
+                    <div className="relative z-10">
+                      <h3 className="font-marker text-xl text-cream mb-3">
+                        Rejoignez l'aventure
+                      </h3>
+                      <p className="font-body text-sm text-cream/80 mb-5 leading-relaxed">
+                        Découvrez comment participer à nos prochaines courses et événements.
+                      </p>
+                      <Link
+                        to="/engager"
+                        className="inline-flex items-center gap-2 bg-orange text-cream px-5 py-3 rounded-lg font-camping text-lg hover:bg-orange/90 transition-colors"
+                      >
+                        S'engager →
+                      </Link>
+                    </div>
                   </div>
                 </ScrollReveal>
               </div>

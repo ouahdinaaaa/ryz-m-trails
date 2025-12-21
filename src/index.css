@@ -156,6 +156,14 @@
     font-family: 'Permanent Marker', cursive;
   }
   
+  /* Global paper background with enhanced texture */
+  .bg-paper-texture {
+    background: 
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"),
+      linear-gradient(180deg, hsl(var(--cream)) 0%, hsl(var(--sand)) 30%, hsl(var(--paper)) 100%);
+    background-blend-mode: soft-light, normal;
+  }
+  
   /* Heavy grain texture overlay */
   .grain-heavy {
     position: relative;
@@ -166,56 +174,109 @@
     position: absolute;
     inset: 0;
     pointer-events: none;
-    opacity: 0.12;
+    opacity: 0.15;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     mix-blend-mode: multiply;
     z-index: 1;
   }
   
-  /* Paper texture with grain */
+  /* Paper texture with grain - Enhanced */
   .paper-vintage {
     background: 
-      url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"),
-      linear-gradient(180deg, hsl(var(--cream)) 0%, hsl(var(--sand)) 50%, hsl(var(--card)) 100%);
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"),
+      linear-gradient(180deg, hsl(42 45% 94%) 0%, hsl(38 40% 90%) 50%, hsl(36 35% 86%) 100%);
     background-blend-mode: overlay, normal;
+  }
+  
+  /* Watercolor card with irregular edges */
+  .card-watercolor {
+    @apply relative overflow-visible;
+    background: hsl(var(--cream));
+    border-radius: 4px;
+    transform: rotate(var(--rotation, 0deg));
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .card-watercolor::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 15 Q 10 5, 25 8 T 55 5 T 85 10 T 115 4 T 145 9 T 175 6 T 195 12 L 198 45 Q 195 75, 197 105 T 194 145 T 198 180 L 190 195 Q 160 192, 130 196 T 70 193 T 10 197 L 3 175 Q 8 145, 5 115 T 7 75 T 4 35 Z' fill='none' stroke='hsl(28 40% 50% / 0.15)' stroke-width='2'/%3E%3C/svg%3E");
+    background-size: 100% 100%;
+    border-radius: 4px;
+    pointer-events: none;
+    z-index: -1;
+  }
+  
+  .card-watercolor::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E");
+    opacity: 0.06;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+    border-radius: 4px;
+  }
+  
+  .card-watercolor:hover {
+    transform: rotate(0deg) translateY(-8px);
+    box-shadow: 
+      0 20px 40px hsl(var(--earth) / 0.18),
+      0 8px 16px hsl(var(--earth) / 0.12);
   }
   
   /* Painted brush stroke button effect */
   .btn-painted {
-    @apply relative inline-flex items-center justify-center px-8 py-3 font-camping text-2xl font-bold tracking-wide transition-all duration-300;
-    background: linear-gradient(90deg, hsl(var(--earth)) 0%, hsl(var(--earth-light)) 100%);
+    @apply relative inline-flex items-center justify-center gap-2 px-8 py-3 font-camping text-2xl font-bold tracking-wide transition-all duration-300;
+    background: linear-gradient(95deg, hsl(var(--earth)) 0%, hsl(var(--earth-light)) 100%);
     color: hsl(var(--cream));
-    border-radius: 4px;
+    border-radius: 3px;
     transform: rotate(-0.5deg);
-    box-shadow: 4px 4px 0 hsl(var(--earth) / 0.3);
+    box-shadow: 
+      3px 3px 0 hsl(var(--earth) / 0.35),
+      inset 0 1px 0 hsl(45 50% 70% / 0.2);
   }
   
   .btn-painted::before {
     content: '';
     position: absolute;
     inset: -2px;
-    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 8 Q 5 2, 15 5 T 35 4 T 55 6 T 75 3 T 95 7 Q 99 10, 98 15 L 97 30 Q 95 38, 85 36 T 65 37 T 45 35 T 25 38 T 5 35 Q 1 32, 2 25 Z' fill='none' stroke='%23000' stroke-width='0.5' opacity='0.1'/%3E%3C/svg%3E");
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 8 Q 5 2, 15 5 T 35 4 T 55 6 T 75 3 T 95 7 Q 99 10, 98 15 L 97 30 Q 95 38, 85 36 T 65 37 T 45 35 T 25 38 T 5 35 Q 1 32, 2 25 Z' fill='none' stroke='%23000' stroke-width='0.5' opacity='0.08'/%3E%3C/svg%3E");
     background-size: 100% 100%;
     border-radius: 4px;
     pointer-events: none;
   }
   
-  .btn-painted:hover {
-    transform: rotate(0deg) translateY(-2px);
-    box-shadow: 6px 6px 0 hsl(var(--earth) / 0.25);
+  .btn-painted::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 60 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E");
+    opacity: 0.1;
+    mix-blend-mode: overlay;
+    border-radius: 3px;
   }
   
-  /* Wooden sign / camping style button */
+  .btn-painted:hover {
+    transform: rotate(0deg) translateY(-2px);
+    box-shadow: 
+      5px 5px 0 hsl(var(--earth) / 0.25),
+      inset 0 1px 0 hsl(45 50% 70% / 0.25);
+  }
+  
+  /* Wooden sign / camping style button - Enhanced */
   .btn-wooden {
     @apply relative inline-flex items-center gap-2 px-6 py-3 font-camping text-xl font-bold tracking-wide;
-    background: linear-gradient(180deg, hsl(38 45% 72%) 0%, hsl(32 40% 58%) 100%);
+    background: linear-gradient(180deg, hsl(38 48% 75%) 0%, hsl(32 42% 62%) 50%, hsl(28 38% 55%) 100%);
     color: hsl(var(--earth));
-    border-radius: 6px;
-    border: 3px solid hsl(var(--earth) / 0.3);
+    border-radius: 5px;
+    border: 3px solid hsl(var(--earth) / 0.25);
     box-shadow: 
-      inset 0 2px 4px hsl(45 50% 80% / 0.5),
-      inset 0 -2px 4px hsl(25 40% 30% / 0.2),
-      4px 4px 8px hsl(var(--earth) / 0.2);
+      inset 0 2px 6px hsl(48 55% 85% / 0.6),
+      inset 0 -3px 6px hsl(25 40% 35% / 0.25),
+      4px 4px 0 hsl(var(--earth) / 0.2),
+      6px 6px 12px hsl(var(--earth) / 0.15);
     transform: rotate(-1deg);
   }
   
@@ -223,94 +284,143 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='wood'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04 0.15' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23wood)'/%3E%3C/svg%3E");
-    opacity: 0.08;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='wood'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.03 0.12' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23wood)'/%3E%3C/svg%3E");
+    opacity: 0.12;
     mix-blend-mode: multiply;
     border-radius: 4px;
   }
   
   .btn-wooden:hover {
-    transform: rotate(0deg) translateY(-2px);
+    transform: rotate(0deg) translateY(-3px);
     box-shadow: 
-      inset 0 2px 4px hsl(45 50% 80% / 0.6),
-      inset 0 -2px 4px hsl(25 40% 30% / 0.15),
-      6px 6px 12px hsl(var(--earth) / 0.25);
+      inset 0 2px 6px hsl(48 55% 85% / 0.7),
+      inset 0 -3px 6px hsl(25 40% 35% / 0.2),
+      6px 6px 0 hsl(var(--earth) / 0.18),
+      8px 8px 16px hsl(var(--earth) / 0.2);
   }
   
-  /* Polaroid / Photo card with pin */
+  /* Polaroid / Photo card with pin - Enhanced */
   .card-photo {
     @apply relative bg-cream p-2 pb-4;
     box-shadow: 
-      0 4px 12px hsl(var(--earth) / 0.15),
-      0 1px 3px hsl(var(--earth) / 0.1);
+      0 4px 12px hsl(var(--earth) / 0.12),
+      0 1px 3px hsl(var(--earth) / 0.08),
+      2px 2px 0 hsl(var(--earth) / 0.05);
     transform: rotate(var(--rotation, -2deg));
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
   
   .card-photo::before {
     content: '';
     position: absolute;
-    top: -8px;
+    top: -10px;
     left: 50%;
     transform: translateX(-50%);
-    width: 16px;
-    height: 16px;
-    background: radial-gradient(circle at 30% 30%, hsl(var(--orange-light)), hsl(var(--orange)));
+    width: 18px;
+    height: 18px;
+    background: radial-gradient(circle at 35% 35%, hsl(var(--orange-light)), hsl(var(--orange)), hsl(var(--rust)));
     border-radius: 50%;
     box-shadow: 
-      inset -2px -2px 4px hsl(var(--rust) / 0.4),
-      0 3px 6px hsl(var(--earth) / 0.3);
+      inset -2px -2px 5px hsl(var(--rust) / 0.5),
+      inset 2px 2px 3px hsl(38 80% 75% / 0.4),
+      0 4px 8px hsl(var(--earth) / 0.35);
     z-index: 10;
   }
   
-  .card-photo:hover {
-    transform: rotate(0deg) translateY(-8px) scale(1.02);
-    box-shadow: 
-      0 20px 40px hsl(var(--earth) / 0.2),
-      0 4px 12px hsl(var(--earth) / 0.15);
+  .card-photo::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E");
+    opacity: 0.04;
+    mix-blend-mode: multiply;
+    pointer-events: none;
   }
   
-  /* Blog tag with painted rectangle effect */
+  .card-photo:hover {
+    transform: rotate(0deg) translateY(-10px) scale(1.02);
+    box-shadow: 
+      0 25px 50px hsl(var(--earth) / 0.22),
+      0 8px 16px hsl(var(--earth) / 0.15);
+  }
+  
+  /* Photo image with sepia/vintage filter */
+  .img-vintage {
+    filter: sepia(0.08) saturate(1.05) contrast(1.02);
+    transition: filter 0.4s ease;
+  }
+  
+  .img-vintage:hover {
+    filter: sepia(0.02) saturate(1.1) contrast(1.05);
+  }
+  
+  /* Blog tag with painted rectangle effect - Enhanced */
   .tag-painted {
-    @apply relative inline-block px-3 py-1 font-camping text-lg font-bold;
-    background: hsl(var(--orange));
+    @apply relative inline-block px-4 py-1.5 font-camping text-lg font-bold;
+    background: linear-gradient(90deg, hsl(var(--orange)) 0%, hsl(var(--orange-light)) 100%);
     color: hsl(var(--cream));
-    transform: rotate(-2deg);
+    transform: rotate(-1.5deg);
+    box-shadow: 2px 2px 0 hsl(var(--rust) / 0.3);
   }
   
   .tag-painted::before {
     content: '';
     position: absolute;
-    inset: -1px;
-    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 60 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 4 Q 3 1, 10 2 T 30 1 T 50 3 T 58 5 L 59 18 Q 57 23, 48 21 T 28 22 T 8 20 T 2 18 Z' fill='%23000' opacity='0.08'/%3E%3C/svg%3E");
+    inset: -2px;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 80 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 6 Q 5 2, 15 4 T 40 3 T 65 5 T 78 8 L 79 22 Q 70 27, 50 25 T 20 26 T 3 23 Z' fill='none' stroke='%23000' stroke-width='0.8' opacity='0.06'/%3E%3C/svg%3E");
     background-size: 100% 100%;
   }
   
-  /* Article card - newspaper style */
+  .tag-painted::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 50 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E");
+    opacity: 0.15;
+    mix-blend-mode: overlay;
+  }
+  
+  /* Article card - newspaper/journal style - Enhanced */
   .card-article {
-    @apply relative bg-cream border border-border/50;
+    @apply relative overflow-hidden;
+    background: hsl(var(--cream));
+    border: 1px solid hsl(var(--border) / 0.4);
     box-shadow: 
-      2px 2px 0 hsl(var(--earth) / 0.08),
-      4px 4px 0 hsl(var(--earth) / 0.05);
+      3px 3px 0 hsl(var(--earth) / 0.08),
+      6px 6px 0 hsl(var(--earth) / 0.04);
     transform: rotate(var(--rotation, 0deg));
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .card-article::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paper)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    mix-blend-mode: multiply;
+    pointer-events: none;
   }
   
   .card-article:hover {
-    transform: rotate(0deg) translateY(-4px);
+    transform: rotate(0deg) translateY(-6px);
     box-shadow: 
       4px 4px 0 hsl(var(--earth) / 0.1),
-      8px 8px 0 hsl(var(--earth) / 0.06);
+      8px 8px 0 hsl(var(--earth) / 0.06),
+      12px 12px 20px hsl(var(--earth) / 0.1);
   }
   
   /* Jungle / Adventure title style */
   .title-jungle {
-    @apply font-marker text-earth;
-    text-shadow: 2px 2px 0 hsl(var(--ochre) / 0.3);
-    letter-spacing: 0.05em;
+    @apply font-marker;
+    color: hsl(var(--earth));
+    text-shadow: 
+      2px 2px 0 hsl(var(--ochre) / 0.35),
+      4px 4px 0 hsl(var(--ochre) / 0.15);
+    letter-spacing: 0.03em;
   }
   
-  /* Sun highlight effect on text */
+  /* Sun highlight effect on text - Enhanced */
   .text-sun-highlight {
     position: relative;
     display: inline;
@@ -319,12 +429,13 @@
   .text-sun-highlight::after {
     content: '';
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 40%;
-    background: linear-gradient(180deg, transparent 0%, hsl(var(--ochre) / 0.25) 100%);
+    bottom: 5%;
+    left: -2%;
+    right: -2%;
+    height: 35%;
+    background: linear-gradient(180deg, transparent 0%, hsl(var(--ochre) / 0.3) 50%, hsl(var(--orange) / 0.15) 100%);
     z-index: -1;
+    transform: rotate(-1deg);
   }
   
   /* Handwritten arrow */
@@ -338,61 +449,88 @@
   /* Scroll indicator camping style */
   .scroll-camping {
     @apply font-camping text-2xl text-earth/80 flex flex-col items-center gap-2;
-    animation: bounce-soft 2s ease-in-out infinite;
+    animation: bounce-soft 2.5s ease-in-out infinite;
   }
   
   @keyframes bounce-soft {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(8px); }
+    50% { transform: translateY(10px); }
   }
   
-  /* Three cards section styling */
+  /* Three cards section styling - Enhanced watercolor */
   .card-discover {
-    @apply relative overflow-hidden;
-    border-radius: 8px;
-    box-shadow: 0 8px 24px hsl(var(--earth) / 0.15);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    @apply relative overflow-visible;
+    border-radius: 6px;
+    box-shadow: 
+      0 8px 24px hsl(var(--earth) / 0.12),
+      0 2px 8px hsl(var(--earth) / 0.08);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: rotate(var(--rotation, 0deg));
+  }
+  
+  .card-discover::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8 20 Q 15 8, 35 12 T 80 8 T 125 14 T 170 10 T 195 18 L 197 55 Q 194 90, 196 125 L 188 142 Q 150 138, 110 143 T 30 140 T 5 135 L 3 100 Q 7 65, 4 35 Z' fill='none' stroke='hsl(28 45% 55% / 0.12)' stroke-width='3'/%3E%3C/svg%3E");
+    background-size: 100% 100%;
+    pointer-events: none;
+    z-index: -1;
   }
   
   .card-discover:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 16px 40px hsl(var(--earth) / 0.2);
+    transform: rotate(0deg) translateY(-8px);
+    box-shadow: 
+      0 20px 48px hsl(var(--earth) / 0.18),
+      0 8px 20px hsl(var(--earth) / 0.12);
   }
   
   .card-discover-label {
-    @apply absolute bottom-0 left-0 right-0 py-4 px-4 text-center;
-    background: linear-gradient(180deg, transparent 0%, hsl(var(--earth) / 0.85) 100%);
+    @apply absolute bottom-0 left-0 right-0 py-5 px-4 text-center;
+    background: linear-gradient(180deg, transparent 0%, hsl(var(--earth) / 0.75) 40%, hsl(var(--earth) / 0.9) 100%);
   }
   
   .card-discover-text {
-    @apply font-camping text-2xl font-bold tracking-wide;
+    @apply font-camping text-2xl md:text-3xl font-bold tracking-wide;
     color: hsl(var(--cream));
-    text-shadow: 0 2px 4px hsl(var(--earth) / 0.5);
+    text-shadow: 0 2px 6px hsl(var(--earth) / 0.6);
   }
   
-  /* Step number circles */
+  /* Step number circles - Enhanced */
   .step-number {
-    @apply flex items-center justify-center w-10 h-10 rounded-full font-camping text-2xl font-bold;
-    background: hsl(var(--earth));
+    @apply flex items-center justify-center w-12 h-12 rounded-full font-camping text-2xl font-bold;
+    background: linear-gradient(135deg, hsl(var(--earth)) 0%, hsl(var(--earth-light)) 100%);
     color: hsl(var(--cream));
-    box-shadow: 2px 2px 0 hsl(var(--ochre) / 0.4);
+    box-shadow: 
+      3px 3px 0 hsl(var(--ochre) / 0.45),
+      inset 0 2px 4px hsl(45 50% 75% / 0.2);
   }
   
   /* Hand-drawn arrow between steps */
   .arrow-drawn {
-    @apply text-earth/60;
+    @apply text-earth/50;
     font-family: 'Caveat', cursive;
-    font-size: 2rem;
+    font-size: 2.5rem;
     transform: scaleX(1.5);
   }
   
-  /* Portrait circle with watercolor edge */
+  /* Portrait circle with watercolor edge - Enhanced */
   .portrait-watercolor {
     @apply relative rounded-full overflow-hidden;
-    border: 4px solid hsl(var(--cream));
+    border: 5px solid hsl(var(--cream));
     box-shadow: 
-      0 4px 16px hsl(var(--earth) / 0.2),
-      inset 0 0 20px hsl(var(--earth) / 0.1);
+      0 6px 20px hsl(var(--earth) / 0.2),
+      inset 0 0 30px hsl(var(--earth) / 0.08);
+  }
+  
+  .portrait-watercolor::before {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='48' fill='none' stroke='hsl(28 40% 50% / 0.1)' stroke-width='3' stroke-dasharray='8 4'/%3E%3C/svg%3E");
+    background-size: 100% 100%;
+    pointer-events: none;
   }
   
   .portrait-watercolor::after {
@@ -400,7 +538,49 @@
     position: absolute;
     inset: 0;
     border-radius: 50%;
-    box-shadow: inset 0 0 30px hsl(var(--sand) / 0.5);
+    box-shadow: inset 0 0 40px hsl(var(--sand) / 0.4);
+    pointer-events: none;
+  }
+  
+  /* Section title with camping style */
+  .section-title-camping {
+    @apply font-camping text-5xl md:text-6xl lg:text-7xl font-bold text-earth text-center;
+    text-shadow: 2px 2px 0 hsl(var(--ochre) / 0.25);
+  }
+  
+  /* Slow reveal animation wrapper */
+  .reveal-slow {
+    animation: revealSlow 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    opacity: 0;
+  }
+  
+  @keyframes revealSlow {
+    0% {
+      opacity: 0;
+      transform: translateY(40px);
+      filter: blur(8px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+  }
+  
+  /* Magazine editorial style for blog */
+  .editorial-layout {
+    @apply relative;
+    background: hsl(var(--cream));
+  }
+  
+  .editorial-layout::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.4' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paper)'/%3E%3C/svg%3E");
+    opacity: 0.04;
+    mix-blend-mode: multiply;
     pointer-events: none;
   }
 }

@@ -130,7 +130,13 @@ const Evenements = () => {
   );
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen relative overflow-hidden">
+      {/* Watercolor background effect */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-0 left-0 w-1/2 h-1/2 bg-gradient-to-br from-nature/10 to-transparent rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-gradient-to-tl from-orange/8 to-transparent rounded-full blur-3xl" />
+        <div className="absolute inset-0 paper-vintage opacity-80" />
+      </div>
       <Header />
       
       {/* Hero */}

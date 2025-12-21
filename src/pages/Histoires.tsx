@@ -78,9 +78,12 @@ const Histoires = () => {
       
       {/* Hero - Editorial magazine style */}
       <section className="pt-32 pb-20 relative overflow-hidden">
-        {/* Decorative watercolor blobs */}
-        <div className="absolute top-20 left-10 w-64 h-64 bg-nature/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-10 right-20 w-80 h-80 bg-orange/8 rounded-full blur-3xl" />
+        {/* Watercolor background effect */}
+        <div className="absolute inset-0">
+          <div className="absolute top-0 left-0 w-1/2 h-1/2 bg-gradient-to-br from-nature/15 to-transparent rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-gradient-to-tl from-orange/10 to-transparent rounded-full blur-3xl" />
+          <div className="absolute inset-0 paper-vintage opacity-90" />
+        </div>
         
         <div className="container mx-auto px-4 text-center relative z-10">
           <ScrollReveal>
@@ -105,8 +108,14 @@ const Histoires = () => {
       </section>
 
       {/* Content - Magazine layout */}
-      <section className="pb-24 relative">
-        <div className="container mx-auto px-4">
+      <section className="pb-24 relative overflow-hidden">
+        {/* Background effect */}
+        <div className="absolute inset-0">
+          <div className="absolute top-0 left-0 w-1/2 h-1/2 bg-gradient-to-br from-nature/10 to-transparent rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-gradient-to-tl from-orange/8 to-transparent rounded-full blur-3xl" />
+          <div className="absolute inset-0 paper-vintage opacity-80" />
+        </div>
+        <div className="container mx-auto px-4 relative z-10">
           <div className="grid lg:grid-cols-4 gap-12">
             {/* Articles Grid - Masonry-like with varying sizes */}
             <div className="lg:col-span-3">

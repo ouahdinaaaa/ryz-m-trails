@@ -4,6 +4,29 @@
 @tailwind components;
 @tailwind utilities;
 
+.grain-overlay {
+  /* Remplace ceci par ton background-image de grain si besoin */
+  background-image: url('/grain.png'); /* ou ton SVG inline */
+  background-size: 120px 120px; /* taille par défaut */
+  background-repeat: repeat;
+}
+
+.grain-lg {
+  background-size: 220px 220px;
+}
+
+.grain-2xl {
+  background-size: 400px 400px;
+}
+
+.grain-8xl {
+  background-size: 800px 800px;
+}
+
+.grain-8xl::after {
+  background-size: 1200px 1200px !important;
+}
+
 @layer base {
   :root {
     /* Paper & Earth Tones - Warmer, more vintage */
@@ -724,7 +747,8 @@
     inset: 0;
     pointer-events: none;
     opacity: 0.1;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    background-size: 400px 400px; /* ou 800px 800px pour un grain ENORME */
     mix-blend-mode: multiply;
     animation: grain 0.3s steps(6) infinite;
   }

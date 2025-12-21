@@ -81,7 +81,7 @@ export function Header() {
       {/* Mobile Menu */}
       <div
         className={cn(
-          "md:hidden absolute top-full left-0 right-0 bg-card/98 backdrop-blur-sm shadow-card transition-all duration-300 overflow-hidden",
+          "md:hidden absolute top-full left-0 right-0 bg-gradient-to-b from-amber-50/95 via-amber-100/92 to-white/92 backdrop-blur-md shadow-xl border-b border-amber-100 transition-all duration-300 overflow-hidden",
           isMobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         )}
       >
@@ -92,10 +92,10 @@ export function Header() {
                 to={item.href}
                 onClick={() => setIsMobileMenuOpen(false)}
                 className={cn(
-                  "block font-display text-2xl py-2 transition-colors",
+                  "block font-serif italic font-semibold text-lg py-2 px-3 rounded-md transition-all text-stone-800 hover:translate-x-1",
                   location.pathname === item.href
-                    ? "text-orange"
-                    : "text-foreground hover:text-earth"
+                    ? "text-orange bg-amber-50/80 shadow-sm"
+                    : "hover:text-orange hover:bg-amber-100/80"
                 )}
               >
                 {item.label}

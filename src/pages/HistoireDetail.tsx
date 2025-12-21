@@ -136,8 +136,14 @@ const HistoireDetail = () => {
       </section>
 
       {/* Article */}
-      <article className="pb-24">
-        <div className="container mx-auto px-4">
+      <article className="pb-24 relative overflow-hidden">
+        {/* Background effect */}
+        <div className="absolute inset-0">
+          <div className="absolute top-0 left-0 w-1/2 h-1/2 bg-gradient-to-br from-nature/10 to-transparent rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-gradient-to-tl from-orange/8 to-transparent rounded-full blur-3xl" />
+          <div className="absolute inset-0 paper-vintage opacity-80" />
+        </div>
+        <div className="container mx-auto px-4 relative z-10">
           <div className="grid lg:grid-cols-3 gap-12 lg:gap-16">
             {/* Main Content */}
             <div className="lg:col-span-2">
@@ -188,20 +194,20 @@ const HistoireDetail = () => {
                 </div>
               </ScrollReveal>
 
-              {/* Article Content - Journal/Editorial style */}
+              {/* Article Content - Clean & Elegant editorial style */}
               <ScrollReveal delay={300}>
                 <div
-                  className="prose prose-lg max-w-none
-                    prose-headings:font-marker prose-headings:text-earth prose-headings:mb-6 prose-headings:mt-12
-                    prose-h2:text-3xl prose-h2:md:text-4xl
-                    prose-p:font-body prose-p:text-foreground/85 prose-p:leading-[1.9] prose-p:mb-6
-                    prose-blockquote:border-l-4 prose-blockquote:border-orange prose-blockquote:bg-sand/50 
-                    prose-blockquote:py-6 prose-blockquote:px-8 prose-blockquote:rounded-r-xl prose-blockquote:my-10
-                    prose-blockquote:font-camping prose-blockquote:text-2xl prose-blockquote:italic prose-blockquote:text-earth
-                    prose-blockquote:relative
+                  className="prose prose-sm md:prose-base max-w-none
+                    prose-headings:font-marker prose-headings:text-earth prose-headings:mb-3 prose-headings:mt-6
+                    prose-h2:text-lg md:text-xl prose-h2:leading-snug
+                    prose-p:font-body prose-p:text-foreground/70 prose-p:leading-relaxed prose-p:mb-3 md:prose-p:mb-4 prose-p:text-sm md:prose-p:text-base
+                    prose-blockquote:border-l-3 prose-blockquote:border-orange prose-blockquote:bg-transparent
+                    prose-blockquote:py-3 prose-blockquote:px-4 prose-blockquote:rounded-r-lg prose-blockquote:my-4 md:prose-blockquote:my-5
+                    prose-blockquote:font-camping prose-blockquote:text-sm md:prose-blockquote:text-base prose-blockquote:not-italic prose-blockquote:text-earth
+                    prose-blockquote:font-medium
                     prose-strong:text-earth prose-strong:font-semibold
-                    [&_.first-letter]:text-7xl [&_.first-letter]:font-marker [&_.first-letter]:text-earth 
-                    [&_.first-letter]:float-left [&_.first-letter]:mr-4 [&_.first-letter]:mt-1 [&_.first-letter]:leading-none
+                    [&_.first-letter]:text-3xl md:[&_.first-letter]:text-4xl [&_.first-letter]:font-marker [&_.first-letter]:text-earth 
+                    [&_.first-letter]:float-left [&_.first-letter]:mr-2 [&_.first-letter]:mt-0.5 [&_.first-letter]:leading-none [&_.first-letter]:font-bold
                   "
                   dangerouslySetInnerHTML={{ __html: article.content }}
                 />

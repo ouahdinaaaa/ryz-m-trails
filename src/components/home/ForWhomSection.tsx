@@ -40,6 +40,16 @@ const portraits = [
 export function ForWhomSection() {
   return (
     <section className="py-24 relative overflow-hidden">
+      {/* Gradient transitions */}
+      <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-cream/80 to-transparent z-10" />
+      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white/60 to-transparent z-10" />
+      
+      {/* Watercolor background effect */}
+      <div className="absolute inset-0">
+        <div className="absolute top-0 left-0 w-1/2 h-1/2 bg-gradient-to-br from-nature/10 to-transparent rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-gradient-to-tl from-orange/8 to-transparent rounded-full blur-3xl" />
+        <div className="absolute inset-0 paper-vintage opacity-80" />
+      </div>
       {/* Subtle background */}
       <div className="absolute inset-0 bg-gradient-to-b from-cream/50 via-sand/30 to-cream/50" />
       

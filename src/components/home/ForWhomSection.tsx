@@ -4,7 +4,7 @@ import julesImg from "@/assets/portrait-jules.jpg";
 import leoImg from "@/assets/portrait-leo.jpg";
 import jasmineImg from "@/assets/portrait-jasmine.jpg";
 import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
 
 const portraits = [
   {
@@ -18,14 +18,14 @@ const portraits = [
     name: "Jules",
     age: "8 ans",
     image: julesImg,
-    description: "Passionné d'aventure, il a la malice dans les yeux. Sa myopathie qui l'empêche de marcher – mais certainement pas de rêver.",
+    description: "Passionné d'aventure, il a la malice dans les yeux. Sa myopathie l'empêche de marcher – mais certainement pas de rêver.",
     hoverPhrase: "« Avec mes copains, je suis le pilote le plus rapide ! »",
   },
   {
     name: "Léo",
     age: "15 ans",
     image: leoImg,
-    description: "D'abord timide, aujourd'hui le sourire au vent, il découvre la montagne et la vie même – après une polyarthrite juvénile.",
+    description: "D'abord timide, aujourd'hui le sourire au vent, il découvre la montagne et la vie après une polyarthrite juvénile.",
     hoverPhrase: "« Chaque sommet atteint, c'est une victoire sur moi-même. »",
   },
   {
@@ -39,59 +39,84 @@ const portraits = [
 
 export function ForWhomSection() {
   return (
-    <section className="py-24 bg-secondary/30">
-      <div className="container mx-auto px-4">
+    <section className="py-24 relative overflow-hidden">
+      {/* Subtle background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-cream/50 via-sand/30 to-cream/50" />
+      
+      <div className="container mx-auto px-4 relative z-10">
+        {/* Section Title - Camping style */}
         <ScrollReveal>
           <div className="text-center mb-16">
-            <h2 className="font-display text-5xl md:text-6xl font-bold text-earth mb-4 flex items-center justify-center gap-4">
+            <h2 className="font-camping text-5xl md:text-6xl lg:text-7xl font-bold text-earth flex items-center justify-center gap-4">
               <span className="text-orange">—</span>
-              Pour qui
-              <span className="text-orange">—</span>
+              <span>Pour qui</span>
+              <span className="text-orange">→</span>
             </h2>
-            <p className="font-display text-xl text-muted-foreground">
+            <p className="font-camping text-xl md:text-2xl text-earth/60 mt-4 tracking-widest">
               RENCONTREZ CEUX QUE NOUS PORTONS
             </p>
           </div>
         </ScrollReveal>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        {/* Portraits grid */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
           {portraits.map((person, index) => (
-            <ScrollReveal key={person.name} delay={index * 100} direction="scale">
+            <ScrollReveal key={person.name} delay={index * 150} direction="scale">
               <div className="group relative text-center">
-                {/* Portrait Circle */}
-                <div className="relative mx-auto w-40 h-40 mb-6">
-                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-orange/20 to-nature/20 transform group-hover:scale-110 transition-transform duration-500" />
-                  <img
-                    src={person.image}
-                    alt={`Portrait de ${person.name}`}
-                    className="w-full h-full object-cover rounded-full border-4 border-card shadow-card group-hover:shadow-hover transition-all duration-500"
+                {/* Portrait with watercolor effect */}
+                <div className="relative mx-auto w-36 h-36 md:w-44 md:h-44 mb-6">
+                  {/* Watercolor ring */}
+                  <div 
+                    className="absolute inset-[-8px] rounded-full"
+                    style={{
+                      background: `conic-gradient(from ${index * 90}deg, hsl(var(--orange) / 0.15), hsl(var(--nature) / 0.1), hsl(var(--ochre) / 0.15), hsl(var(--orange) / 0.15))`,
+                      filter: 'blur(4px)'
+                    }}
                   />
+                  
+                  <div className="portrait-watercolor w-full h-full">
+                    <img
+                      src={person.image}
+                      alt={`Portrait de ${person.name}`}
+                      className="w-full h-full object-cover rounded-full img-vintage"
+                    />
+                  </div>
+                  
+                  {/* Hover quote bubble */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none">
+                    <div 
+                      className="absolute -inset-4 bg-earth/95 rounded-2xl p-4 transform scale-90 group-hover:scale-100 transition-transform duration-300"
+                      style={{ boxShadow: '0 10px 40px hsl(var(--earth) / 0.4)' }}
+                    >
+                      <p className="font-body italic text-sm text-cream leading-relaxed">
+                        {person.hoverPhrase}
+                      </p>
+                    </div>
+                  </div>
                 </div>
 
                 {/* Info */}
-                <h3 className="font-display text-2xl font-semibold text-foreground mb-1">
-                  {person.name}, <span className="text-muted-foreground">{person.age}</span>
+                <h3 className="font-marker text-2xl text-earth mb-1">
+                  {person.name}
+                  <span className="text-muted-foreground font-camping text-lg ml-2">
+                    {person.age}
+                  </span>
                 </h3>
-                <p className="font-body text-sm text-muted-foreground leading-relaxed mb-4">
+                <p className="font-body text-sm text-muted-foreground leading-relaxed px-2">
                   {person.description}
                 </p>
-
-                {/* Hover Quote */}
-                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute inset-0 flex items-center justify-center pointer-events-none">
-                  <div className="bg-earth/95 text-primary-foreground p-4 rounded-lg shadow-hover mx-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                    <p className="font-body italic text-sm">{person.hoverPhrase}</p>
-                  </div>
-                </div>
               </div>
             </ScrollReveal>
           ))}
         </div>
 
-        <ScrollReveal delay={500}>
-          <div className="text-center mt-12">
-            <Button variant="orange" size="lg" asChild>
-              <Link to="/histoires">Voir les témoignages</Link>
-            </Button>
+        {/* CTA Button - Wooden sign style */}
+        <ScrollReveal delay={600}>
+          <div className="text-center mt-16">
+            <Link to="/histoires" className="btn-wooden text-2xl">
+              Voir les témoignages
+              <ArrowRight size={24} />
+            </Link>
           </div>
         </ScrollReveal>
       </div>

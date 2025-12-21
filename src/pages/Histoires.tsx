@@ -22,6 +22,7 @@ const stories = [
     date: "18 avril 2024",
     image: storyCourse,
     category: "Course inclusive",
+    rotation: "-1.5deg",
   },
   {
     id: 2,
@@ -30,6 +31,7 @@ const stories = [
     date: "5 avril 2024",
     image: storyPortrait,
     category: "Histoires et témoignages",
+    rotation: "1deg",
   },
   {
     id: 3,
@@ -38,94 +40,128 @@ const stories = [
     date: "28 mars 2024",
     image: storyChampionnat,
     category: "Joëlette",
+    rotation: "-0.5deg",
+  },
+  {
+    id: 4,
+    title: "La Trifouillette : une nuit sous les étoiles",
+    excerpt: "Quand la course nocturne devient une aventure magique. Récit d'une expérience unique au clair de lune.",
+    date: "15 mars 2024",
+    image: storyCourse,
+    category: "Course inclusive",
+    rotation: "1.5deg",
+  },
+  {
+    id: 5,
+    title: "Amélie nous raconte son parcours",
+    excerpt: "Du premier regard timide à la passion de la course, Amélie partage son histoire avec une émotion sincère.",
+    date: "2 mars 2024",
+    image: storyPortrait,
+    category: "Histoires et témoignages",
+    rotation: "-1deg",
+  },
+  {
+    id: 6,
+    title: "Formation joëlette : nos nouveaux équipiers",
+    excerpt: "Bienvenue à la nouvelle génération de bénévoles ! Retour sur une journée de formation riche en partages.",
+    date: "20 février 2024",
+    image: storyChampionnat,
+    category: "Vie associative",
+    rotation: "0.5deg",
   },
 ];
 
 const Histoires = () => {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen editorial-layout grain-overlay">
       <Header />
       
-      {/* Hero */}
-      <section className="pt-32 pb-16 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-nature/30 to-transparent" />
-        </div>
+      {/* Hero - Editorial magazine style */}
+      <section className="pt-32 pb-20 relative overflow-hidden">
+        {/* Decorative watercolor blobs */}
+        <div className="absolute top-20 left-10 w-64 h-64 bg-nature/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-10 right-20 w-80 h-80 bg-orange/8 rounded-full blur-3xl" />
         
         <div className="container mx-auto px-4 text-center relative z-10">
           <ScrollReveal>
-            <h1 className="font-display text-6xl md:text-8xl font-bold text-earth mb-4">
-              HISTOIRES
+            <h1 className="title-jungle text-6xl md:text-8xl lg:text-9xl mb-6">
+              <span className="text-sun-highlight">HIST</span>OIRES
             </h1>
           </ScrollReveal>
+          
           <ScrollReveal delay={200}>
-            <p className="font-display text-xl text-muted-foreground mb-4">
-              ENTREZ DANS L'AVENTURE...
+            <p className="font-camping text-2xl md:text-3xl text-earth/70 mb-6 tracking-widest">
+              — ENTREZ DANS L'AVENTURE —
             </p>
           </ScrollReveal>
+          
           <ScrollReveal delay={400}>
-            <p className="font-body text-foreground/80 max-w-xl mx-auto">
-              Découvrez les récits inspirants de celles et ceux qui bâtissent <strong>RYZ'ÔM</strong>.
+            <p className="font-body text-lg md:text-xl text-foreground/80 max-w-2xl mx-auto leading-relaxed">
+              Découvrez les récits inspirants de celles et ceux qui bâtissent <strong className="text-earth">RYZ'ÔM</strong> au quotidien. 
+              Chaque histoire est une invitation à rejoindre l'aventure.
             </p>
           </ScrollReveal>
         </div>
       </section>
 
-      {/* Content */}
-      <section className="pb-24">
+      {/* Content - Magazine layout */}
+      <section className="pb-24 relative">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-4 gap-12">
-            {/* Articles Grid */}
+            {/* Articles Grid - Masonry-like with varying sizes */}
             <div className="lg:col-span-3">
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid md:grid-cols-2 gap-8 lg:gap-10">
                 {stories.map((story, index) => (
                   <ScrollReveal key={story.id} delay={index * 100}>
                     <article
-                      className="group bg-card rounded-xl overflow-hidden shadow-card hover:shadow-hover transition-all duration-500 h-full flex flex-col"
-                      style={{
-                        transform: `rotate(${index % 2 === 0 ? -1 : 1}deg)`,
-                      }}
+                      className="card-article group"
+                      style={{ '--rotation': story.rotation } as React.CSSProperties}
                     >
-                      {/* Pin */}
-                      <div className="absolute -top-1 left-1/2 -translate-x-1/2 z-10">
-                        <div className="w-4 h-4 rounded-full bg-orange shadow-md" />
+                      {/* Pin decoration */}
+                      <div className="absolute -top-3 left-8 z-20">
+                        <div 
+                          className="w-5 h-5 rounded-full"
+                          style={{
+                            background: 'radial-gradient(circle at 35% 35%, hsl(28 80% 65%), hsl(22 85% 52%), hsl(18 60% 40%))',
+                            boxShadow: 'inset -1px -1px 3px hsl(18 60% 30% / 0.4), 0 3px 6px hsl(28 50% 32% / 0.35)'
+                          }}
+                        />
                       </div>
 
-                      {/* Tag */}
+                      {/* Tag - Painted style */}
                       <div className="absolute top-4 right-4 z-10">
-                        <span className="bg-nature text-accent-foreground px-2 py-1 rounded-full font-display text-xs shadow-soft">
+                        <span className="tag-painted text-sm">
                           Blog
                         </span>
                       </div>
 
-                      {/* Image */}
-                      <div className="relative h-48 overflow-hidden">
+                      {/* Image with vintage treatment */}
+                      <div className="relative h-56 overflow-hidden">
                         <img
                           src={story.image}
                           alt={story.title}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                          className="w-full h-full object-cover img-vintage group-hover:scale-105 transition-transform duration-700"
                         />
+                        <div className="absolute inset-0 bg-gradient-to-t from-cream/90 via-cream/20 to-transparent" />
                       </div>
 
-                      {/* Content */}
-                      <div className="p-5 flex-1 flex flex-col">
-                        <h2 className="font-display text-xl font-semibold text-foreground mb-2 group-hover:text-earth transition-colors line-clamp-2">
+                      {/* Content - Journal style */}
+                      <div className="p-6 pt-4">
+                        <h2 className="font-marker text-xl md:text-2xl text-earth mb-3 leading-tight group-hover:text-orange transition-colors duration-300">
                           {story.title}
                         </h2>
-                        <p className="font-body text-sm text-muted-foreground mb-4 line-clamp-3 flex-1">
+                        <p className="font-body text-sm text-foreground/70 mb-5 leading-relaxed line-clamp-3">
                           {story.excerpt}
                         </p>
-                        <div className="flex items-center justify-between mt-auto">
-                          <span className="font-body text-xs text-orange">{story.date}</span>
+                        
+                        <div className="flex items-center justify-between pt-4 border-t border-border/30">
+                          <span className="font-camping text-lg text-earth/60">{story.date}</span>
                           <Link
                             to={`/histoires/${story.id}`}
-                            className="inline-flex items-center gap-1 font-display text-sm text-earth hover:text-orange transition-colors group/link"
+                            className="btn-painted text-base py-2 px-4 group/btn"
                           >
-                            Lire l'histoire complète
-                            <ArrowRight
-                              size={14}
-                              className="group-hover/link:translate-x-1 transition-transform"
-                            />
+                            Lire l'histoire
+                            <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
                           </Link>
                         </div>
                       </div>
@@ -133,29 +169,61 @@ const Histoires = () => {
                   </ScrollReveal>
                 ))}
               </div>
+              
+              {/* Load more button */}
+              <ScrollReveal delay={600}>
+                <div className="text-center mt-16">
+                  <button className="btn-wooden text-2xl">
+                    Voir tous nos articles
+                    <ArrowRight size={24} />
+                  </button>
+                </div>
+              </ScrollReveal>
             </div>
 
-            {/* Sidebar */}
+            {/* Sidebar - Sticky with paper effect */}
             <aside className="lg:col-span-1">
               <ScrollReveal direction="right">
-                <div className="bg-card rounded-xl p-6 shadow-card sticky top-24">
-                  <h3 className="font-display text-2xl font-semibold text-earth mb-6">
+                <div 
+                  className="card-watercolor p-6 sticky top-28"
+                  style={{ '--rotation': '-1deg' } as React.CSSProperties}
+                >
+                  <h3 className="font-marker text-2xl text-earth mb-6 flex items-center gap-2">
+                    <span className="text-orange">→</span>
                     Catégories
                   </h3>
                   <ul className="space-y-3">
                     {categories.map((cat) => (
                       <li key={cat.name}>
-                        <button className="w-full flex items-center justify-between py-2 px-3 rounded-lg hover:bg-secondary transition-colors group">
+                        <button className="w-full flex items-center justify-between py-3 px-4 rounded-lg hover:bg-sand/50 transition-all duration-300 group border border-transparent hover:border-border/30">
                           <span className="font-body text-foreground group-hover:text-earth transition-colors">
                             {cat.name}
                           </span>
-                          <span className="font-display text-muted-foreground bg-secondary px-2 py-1 rounded-full text-sm">
+                          <span 
+                            className="font-camping text-lg text-cream px-3 py-1 rounded-full"
+                            style={{
+                              background: 'linear-gradient(135deg, hsl(var(--earth)) 0%, hsl(var(--earth-light)) 100%)'
+                            }}
+                          >
                             {cat.count}
                           </span>
                         </button>
                       </li>
                     ))}
                   </ul>
+                  
+                  {/* Newsletter signup */}
+                  <div className="mt-8 pt-6 border-t border-border/40">
+                    <h4 className="font-camping text-xl text-earth mb-3">Restez informés</h4>
+                    <p className="font-body text-sm text-muted-foreground mb-4">
+                      Recevez nos dernières histoires directement dans votre boîte mail.
+                    </p>
+                    <input 
+                      type="email" 
+                      placeholder="Votre email..."
+                      className="w-full px-4 py-3 rounded-lg border-2 border-border/40 bg-cream/50 font-body text-sm focus:outline-none focus:border-earth/50 transition-colors"
+                    />
+                  </div>
                 </div>
               </ScrollReveal>
             </aside>

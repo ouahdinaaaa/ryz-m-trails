@@ -16,6 +16,8 @@ export default {
       fontFamily: {
         display: ['Caveat', 'cursive'],
         body: ['Lora', 'serif'],
+        camping: ['Amatic SC', 'cursive'],
+        marker: ['Permanent Marker', 'cursive'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -53,11 +55,15 @@ export default {
         },
         ochre: "hsl(var(--ochre))",
         earth: "hsl(var(--earth))",
+        "earth-light": "hsl(var(--earth-light))",
         nature: "hsl(var(--nature))",
         sky: "hsl(var(--sky))",
         orange: "hsl(var(--orange))",
+        "orange-light": "hsl(var(--orange-light))",
         sand: "hsl(var(--sand))",
         paper: "hsl(var(--paper))",
+        cream: "hsl(var(--cream))",
+        rust: "hsl(var(--rust))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Amatic+SC:wght@400;700&family=Permanent+Marker&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,109 +6,115 @@
 
 @layer base {
   :root {
-    /* Paper & Earth Tones */
-    --background: 35 30% 95%;
-    --foreground: 25 40% 20%;
+    /* Paper & Earth Tones - Warmer, more vintage */
+    --background: 38 32% 92%;
+    --foreground: 25 45% 18%;
     
     /* Sand/Parchment */
-    --card: 38 35% 92%;
-    --card-foreground: 25 40% 20%;
+    --card: 40 38% 88%;
+    --card-foreground: 25 45% 18%;
     
-    --popover: 38 35% 92%;
-    --popover-foreground: 25 40% 20%;
+    --popover: 40 38% 88%;
+    --popover-foreground: 25 45% 18%;
     
-    /* Earth Brown */
-    --primary: 25 45% 35%;
-    --primary-foreground: 38 35% 96%;
+    /* Earth Brown - Richer */
+    --primary: 28 50% 32%;
+    --primary-foreground: 40 35% 96%;
     
     /* Soft Sand */
-    --secondary: 35 35% 88%;
-    --secondary-foreground: 25 40% 25%;
+    --secondary: 38 40% 85%;
+    --secondary-foreground: 28 45% 22%;
     
     /* Muted Earth */
-    --muted: 35 20% 85%;
-    --muted-foreground: 25 25% 45%;
+    --muted: 38 25% 80%;
+    --muted-foreground: 28 30% 40%;
     
     /* Nature Green */
-    --accent: 85 35% 45%;
-    --accent-foreground: 38 35% 96%;
+    --accent: 85 40% 42%;
+    --accent-foreground: 40 35% 96%;
     
     /* Warm Orange */
-    --destructive: 25 85% 55%;
-    --destructive-foreground: 38 35% 96%;
+    --destructive: 22 85% 52%;
+    --destructive-foreground: 40 35% 96%;
     
-    --border: 30 25% 80%;
-    --input: 35 25% 85%;
-    --ring: 25 45% 35%;
+    --border: 32 28% 75%;
+    --input: 38 28% 82%;
+    --ring: 28 50% 32%;
     
     --radius: 0.75rem;
     
-    /* Custom colors */
-    --ochre: 35 70% 50%;
-    --earth: 25 45% 35%;
-    --nature: 85 35% 45%;
-    --sky: 200 45% 70%;
-    --orange: 25 85% 55%;
-    --sand: 38 35% 90%;
-    --paper: 35 30% 95%;
+    /* Custom colors - Enhanced */
+    --ochre: 38 75% 48%;
+    --earth: 28 50% 32%;
+    --earth-light: 32 45% 45%;
+    --nature: 85 40% 42%;
+    --sky: 200 45% 68%;
+    --orange: 22 85% 52%;
+    --orange-light: 28 80% 62%;
+    --sand: 40 40% 88%;
+    --paper: 38 32% 92%;
+    --cream: 42 45% 94%;
+    --rust: 18 60% 40%;
     
-    /* Shadows */
-    --shadow-soft: 0 4px 20px -4px hsl(25 45% 35% / 0.15);
-    --shadow-card: 0 8px 30px -8px hsl(25 45% 35% / 0.2);
-    --shadow-hover: 0 12px 40px -8px hsl(25 45% 35% / 0.25);
+    /* Shadows - Warmer */
+    --shadow-soft: 0 4px 20px -4px hsl(28 50% 32% / 0.12);
+    --shadow-card: 0 8px 30px -8px hsl(28 50% 32% / 0.18);
+    --shadow-hover: 0 16px 50px -10px hsl(28 50% 32% / 0.22);
+    --shadow-painted: 4px 4px 0 hsl(28 50% 32% / 0.15);
     
     /* Gradients */
-    --gradient-paper: linear-gradient(180deg, hsl(35 30% 95%) 0%, hsl(38 35% 90%) 100%);
-    --gradient-earth: linear-gradient(135deg, hsl(25 45% 35%) 0%, hsl(35 50% 45%) 100%);
-    --gradient-nature: linear-gradient(135deg, hsl(85 35% 45%) 0%, hsl(95 40% 55%) 100%);
+    --gradient-paper: linear-gradient(180deg, hsl(38 32% 92%) 0%, hsl(40 38% 88%) 100%);
+    --gradient-earth: linear-gradient(135deg, hsl(28 50% 32%) 0%, hsl(32 45% 45%) 100%);
+    --gradient-nature: linear-gradient(135deg, hsl(85 40% 42%) 0%, hsl(95 45% 52%) 100%);
+    --gradient-sunset: linear-gradient(135deg, hsl(22 85% 52%) 0%, hsl(38 75% 48%) 100%);
     
-    --sidebar-background: 38 35% 92%;
-    --sidebar-foreground: 25 40% 20%;
-    --sidebar-primary: 25 45% 35%;
-    --sidebar-primary-foreground: 38 35% 96%;
-    --sidebar-accent: 35 35% 88%;
-    --sidebar-accent-foreground: 25 40% 25%;
-    --sidebar-border: 30 25% 80%;
-    --sidebar-ring: 25 45% 35%;
+    --sidebar-background: 40 38% 88%;
+    --sidebar-foreground: 25 45% 18%;
+    --sidebar-primary: 28 50% 32%;
+    --sidebar-primary-foreground: 40 35% 96%;
+    --sidebar-accent: 38 40% 85%;
+    --sidebar-accent-foreground: 28 45% 22%;
+    --sidebar-border: 32 28% 75%;
+    --sidebar-ring: 28 50% 32%;
   }
 
   .dark {
-    --background: 25 30% 10%;
-    --foreground: 35 30% 90%;
+    --background: 25 30% 8%;
+    --foreground: 38 32% 88%;
     
-    --card: 25 25% 15%;
-    --card-foreground: 35 30% 90%;
+    --card: 25 28% 12%;
+    --card-foreground: 38 32% 88%;
     
-    --popover: 25 25% 15%;
-    --popover-foreground: 35 30% 90%;
+    --popover: 25 28% 12%;
+    --popover-foreground: 38 32% 88%;
     
-    --primary: 35 50% 60%;
-    --primary-foreground: 25 30% 10%;
+    --primary: 38 55% 58%;
+    --primary-foreground: 25 30% 8%;
     
-    --secondary: 25 20% 20%;
-    --secondary-foreground: 35 30% 90%;
+    --secondary: 25 22% 18%;
+    --secondary-foreground: 38 32% 88%;
     
-    --muted: 25 20% 20%;
-    --muted-foreground: 35 20% 60%;
+    --muted: 25 22% 18%;
+    --muted-foreground: 38 22% 58%;
     
-    --accent: 85 30% 40%;
-    --accent-foreground: 35 30% 90%;
+    --accent: 85 35% 38%;
+    --accent-foreground: 38 32% 88%;
     
-    --destructive: 25 70% 45%;
-    --destructive-foreground: 35 30% 90%;
+    --destructive: 22 70% 42%;
+    --destructive-foreground: 38 32% 88%;
     
-    --border: 25 20% 25%;
-    --input: 25 20% 25%;
-    --ring: 35 50% 60%;
+    --border: 25 22% 22%;
+    --input: 25 22% 22%;
+    --ring: 38 55% 58%;
     
-    --sidebar-background: 25 25% 12%;
-    --sidebar-foreground: 35 30% 90%;
-    --sidebar-primary: 35 50% 60%;
-    --sidebar-primary-foreground: 25 30% 10%;
-    --sidebar-accent: 25 20% 18%;
-    --sidebar-accent-foreground: 35 30% 90%;
-    --sidebar-border: 25 20% 25%;
-    --sidebar-ring: 35 50% 60%;
+    --sidebar-background: 25 28% 10%;
+    --sidebar-foreground: 38 32% 88%;
+    --sidebar-primary: 38 55% 58%;
+    --sidebar-primary-foreground: 25 30% 8%;
+    --sidebar-accent: 25 22% 16%;
+    --sidebar-accent-foreground: 38 32% 88%;
+    --sidebar-border: 25 22% 22%;
+    --sidebar-ring: 38 55% 58%;
   }
 }
 
@@ -119,8 +125,6 @@
   
   body {
     @apply bg-background text-foreground font-body antialiased;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    background-blend-mode: overlay;
   }
   
   html {
@@ -143,62 +147,261 @@
 }
 
 @layer components {
-  .paper-texture {
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    background-blend-mode: overlay;
+  /* Font families */
+  .font-camping {
+    font-family: 'Amatic SC', cursive;
   }
   
-  .card-organic {
-    @apply relative bg-card rounded-lg overflow-hidden;
-    box-shadow: var(--shadow-card);
+  .font-marker {
+    font-family: 'Permanent Marker', cursive;
+  }
+  
+  /* Heavy grain texture overlay */
+  .grain-heavy {
+    position: relative;
+  }
+  
+  .grain-heavy::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.12;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    mix-blend-mode: multiply;
+    z-index: 1;
+  }
+  
+  /* Paper texture with grain */
+  .paper-vintage {
+    background: 
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"),
+      linear-gradient(180deg, hsl(var(--cream)) 0%, hsl(var(--sand)) 50%, hsl(var(--card)) 100%);
+    background-blend-mode: overlay, normal;
+  }
+  
+  /* Painted brush stroke button effect */
+  .btn-painted {
+    @apply relative inline-flex items-center justify-center px-8 py-3 font-camping text-2xl font-bold tracking-wide transition-all duration-300;
+    background: linear-gradient(90deg, hsl(var(--earth)) 0%, hsl(var(--earth-light)) 100%);
+    color: hsl(var(--cream));
+    border-radius: 4px;
+    transform: rotate(-0.5deg);
+    box-shadow: 4px 4px 0 hsl(var(--earth) / 0.3);
+  }
+  
+  .btn-painted::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 8 Q 5 2, 15 5 T 35 4 T 55 6 T 75 3 T 95 7 Q 99 10, 98 15 L 97 30 Q 95 38, 85 36 T 65 37 T 45 35 T 25 38 T 5 35 Q 1 32, 2 25 Z' fill='none' stroke='%23000' stroke-width='0.5' opacity='0.1'/%3E%3C/svg%3E");
+    background-size: 100% 100%;
+    border-radius: 4px;
+    pointer-events: none;
+  }
+  
+  .btn-painted:hover {
+    transform: rotate(0deg) translateY(-2px);
+    box-shadow: 6px 6px 0 hsl(var(--earth) / 0.25);
+  }
+  
+  /* Wooden sign / camping style button */
+  .btn-wooden {
+    @apply relative inline-flex items-center gap-2 px-6 py-3 font-camping text-xl font-bold tracking-wide;
+    background: linear-gradient(180deg, hsl(38 45% 72%) 0%, hsl(32 40% 58%) 100%);
+    color: hsl(var(--earth));
+    border-radius: 6px;
+    border: 3px solid hsl(var(--earth) / 0.3);
+    box-shadow: 
+      inset 0 2px 4px hsl(45 50% 80% / 0.5),
+      inset 0 -2px 4px hsl(25 40% 30% / 0.2),
+      4px 4px 8px hsl(var(--earth) / 0.2);
     transform: rotate(-1deg);
   }
   
-  .card-organic:nth-child(even) {
-    transform: rotate(1deg);
-  }
-  
-  .card-organic:hover {
-    box-shadow: var(--shadow-hover);
-    transform: rotate(0deg) translateY(-4px);
-  }
-  
-  .title-handwritten {
-    @apply font-display font-semibold tracking-wide;
-  }
-  
-  .text-organic {
-    @apply font-body leading-relaxed;
-  }
-  
-  .btn-organic {
-    @apply relative inline-flex items-center justify-center px-6 py-3 font-display font-medium text-lg rounded-full transition-all duration-300;
-    box-shadow: var(--shadow-soft);
-  }
-  
-  .btn-organic:hover {
-    box-shadow: var(--shadow-hover);
-    transform: translateY(-2px);
-  }
-  
-  .section-divider {
-    @apply relative w-full h-16;
-    background: linear-gradient(180deg, transparent 0%, hsl(var(--background)) 100%);
-  }
-  
-  .watercolor-edge {
-    mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 10' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 5 Q 10 0, 20 5 T 40 5 T 60 5 T 80 5 T 100 5 L 100 10 L 0 10 Z' fill='black'/%3E%3C/svg%3E");
-    mask-size: 100% 100%;
-  }
-  
-  .pinned-card {
-    @apply relative;
-  }
-  
-  .pinned-card::before {
+  .btn-wooden::before {
     content: '';
-    @apply absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-orange z-10;
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='wood'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04 0.15' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23wood)'/%3E%3C/svg%3E");
+    opacity: 0.08;
+    mix-blend-mode: multiply;
+    border-radius: 4px;
+  }
+  
+  .btn-wooden:hover {
+    transform: rotate(0deg) translateY(-2px);
+    box-shadow: 
+      inset 0 2px 4px hsl(45 50% 80% / 0.6),
+      inset 0 -2px 4px hsl(25 40% 30% / 0.15),
+      6px 6px 12px hsl(var(--earth) / 0.25);
+  }
+  
+  /* Polaroid / Photo card with pin */
+  .card-photo {
+    @apply relative bg-cream p-2 pb-4;
+    box-shadow: 
+      0 4px 12px hsl(var(--earth) / 0.15),
+      0 1px 3px hsl(var(--earth) / 0.1);
+    transform: rotate(var(--rotation, -2deg));
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .card-photo::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 16px;
+    height: 16px;
+    background: radial-gradient(circle at 30% 30%, hsl(var(--orange-light)), hsl(var(--orange)));
+    border-radius: 50%;
+    box-shadow: 
+      inset -2px -2px 4px hsl(var(--rust) / 0.4),
+      0 3px 6px hsl(var(--earth) / 0.3);
+    z-index: 10;
+  }
+  
+  .card-photo:hover {
+    transform: rotate(0deg) translateY(-8px) scale(1.02);
+    box-shadow: 
+      0 20px 40px hsl(var(--earth) / 0.2),
+      0 4px 12px hsl(var(--earth) / 0.15);
+  }
+  
+  /* Blog tag with painted rectangle effect */
+  .tag-painted {
+    @apply relative inline-block px-3 py-1 font-camping text-lg font-bold;
+    background: hsl(var(--orange));
+    color: hsl(var(--cream));
+    transform: rotate(-2deg);
+  }
+  
+  .tag-painted::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 60 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 4 Q 3 1, 10 2 T 30 1 T 50 3 T 58 5 L 59 18 Q 57 23, 48 21 T 28 22 T 8 20 T 2 18 Z' fill='%23000' opacity='0.08'/%3E%3C/svg%3E");
+    background-size: 100% 100%;
+  }
+  
+  /* Article card - newspaper style */
+  .card-article {
+    @apply relative bg-cream border border-border/50;
+    box-shadow: 
+      2px 2px 0 hsl(var(--earth) / 0.08),
+      4px 4px 0 hsl(var(--earth) / 0.05);
+    transform: rotate(var(--rotation, 0deg));
+    transition: all 0.3s ease;
+  }
+  
+  .card-article:hover {
+    transform: rotate(0deg) translateY(-4px);
+    box-shadow: 
+      4px 4px 0 hsl(var(--earth) / 0.1),
+      8px 8px 0 hsl(var(--earth) / 0.06);
+  }
+  
+  /* Jungle / Adventure title style */
+  .title-jungle {
+    @apply font-marker text-earth;
+    text-shadow: 2px 2px 0 hsl(var(--ochre) / 0.3);
+    letter-spacing: 0.05em;
+  }
+  
+  /* Sun highlight effect on text */
+  .text-sun-highlight {
+    position: relative;
+    display: inline;
+  }
+  
+  .text-sun-highlight::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40%;
+    background: linear-gradient(180deg, transparent 0%, hsl(var(--ochre) / 0.25) 100%);
+    z-index: -1;
+  }
+  
+  /* Handwritten arrow */
+  .arrow-hand {
+    display: inline-block;
+    font-family: 'Caveat', cursive;
+    font-size: 1.5em;
+    transform: translateY(2px);
+  }
+  
+  /* Scroll indicator camping style */
+  .scroll-camping {
+    @apply font-camping text-2xl text-earth/80 flex flex-col items-center gap-2;
+    animation: bounce-soft 2s ease-in-out infinite;
+  }
+  
+  @keyframes bounce-soft {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+  }
+  
+  /* Three cards section styling */
+  .card-discover {
+    @apply relative overflow-hidden;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px hsl(var(--earth) / 0.15);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .card-discover:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px hsl(var(--earth) / 0.2);
+  }
+  
+  .card-discover-label {
+    @apply absolute bottom-0 left-0 right-0 py-4 px-4 text-center;
+    background: linear-gradient(180deg, transparent 0%, hsl(var(--earth) / 0.85) 100%);
+  }
+  
+  .card-discover-text {
+    @apply font-camping text-2xl font-bold tracking-wide;
+    color: hsl(var(--cream));
+    text-shadow: 0 2px 4px hsl(var(--earth) / 0.5);
+  }
+  
+  /* Step number circles */
+  .step-number {
+    @apply flex items-center justify-center w-10 h-10 rounded-full font-camping text-2xl font-bold;
+    background: hsl(var(--earth));
+    color: hsl(var(--cream));
+    box-shadow: 2px 2px 0 hsl(var(--ochre) / 0.4);
+  }
+  
+  /* Hand-drawn arrow between steps */
+  .arrow-drawn {
+    @apply text-earth/60;
+    font-family: 'Caveat', cursive;
+    font-size: 2rem;
+    transform: scaleX(1.5);
+  }
+  
+  /* Portrait circle with watercolor edge */
+  .portrait-watercolor {
+    @apply relative rounded-full overflow-hidden;
+    border: 4px solid hsl(var(--cream));
+    box-shadow: 
+      0 4px 16px hsl(var(--earth) / 0.2),
+      inset 0 0 20px hsl(var(--earth) / 0.1);
+  }
+  
+  .portrait-watercolor::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    box-shadow: inset 0 0 30px hsl(var(--sand) / 0.5);
+    pointer-events: none;
   }
 }
 
@@ -225,7 +428,7 @@
   }
   
   .animate-grain {
-    animation: grain 0.5s steps(10) infinite;
+    animation: grain 0.3s steps(6) infinite;
   }
   
   .animate-handwriting {
@@ -282,15 +485,15 @@
   
   @keyframes grain {
     0%, 100% { transform: translate(0, 0); }
-    10% { transform: translate(-2%, -2%); }
-    20% { transform: translate(2%, 2%); }
-    30% { transform: translate(-1%, 1%); }
-    40% { transform: translate(1%, -1%); }
-    50% { transform: translate(-2%, 2%); }
-    60% { transform: translate(2%, -2%); }
-    70% { transform: translate(-1%, -1%); }
-    80% { transform: translate(1%, 1%); }
-    90% { transform: translate(-2%, -1%); }
+    10% { transform: translate(-1%, -1%); }
+    20% { transform: translate(1%, 1%); }
+    30% { transform: translate(-0.5%, 0.5%); }
+    40% { transform: translate(0.5%, -0.5%); }
+    50% { transform: translate(-1%, 1%); }
+    60% { transform: translate(1%, -1%); }
+    70% { transform: translate(-0.5%, -0.5%); }
+    80% { transform: translate(0.5%, 0.5%); }
+    90% { transform: translate(-1%, -0.5%); }
   }
   
   @keyframes handwriting {
@@ -330,7 +533,7 @@
     text-wrap: balance;
   }
   
-  /* Grain overlay */
+  /* Enhanced grain overlay */
   .grain-overlay {
     position: relative;
   }
@@ -340,41 +543,23 @@
     position: absolute;
     inset: 0;
     pointer-events: none;
-    opacity: 0.08;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    animation: grain 0.5s steps(10) infinite;
+    opacity: 0.1;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    mix-blend-mode: multiply;
+    animation: grain 0.3s steps(6) infinite;
   }
   
-  /* Photo pinned enhanced */
-  .photo-pinned {
-    @apply relative transition-all duration-500;
-    transform: rotate(var(--rotation, -1deg));
+  /* Sepia vignette effect */
+  .vignette-sepia {
+    position: relative;
   }
   
-  .photo-pinned:hover {
-    transform: rotate(0deg) scale(1.02) translateY(-4px);
-    box-shadow: var(--shadow-hover);
-  }
-  
-  .photo-pinned::before {
+  .vignette-sepia::before {
     content: '';
-    @apply absolute -top-3 left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-orange z-10;
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.4), 0 2px 4px rgba(0,0,0,0.2);
-  }
-  
-  /* Handwritten title effect */
-  .title-handwritten-animated {
-    background: linear-gradient(90deg, hsl(var(--earth)) 0%, hsl(var(--earth)) 100%);
-    background-size: 0% 100%;
-    background-repeat: no-repeat;
-    -webkit-background-clip: text;
-    background-clip: text;
-    animation: revealText 1s ease-out forwards;
-  }
-  
-  @keyframes revealText {
-    to {
-      background-size: 100% 100%;
-    }
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(ellipse at center, transparent 40%, hsl(var(--earth) / 0.15) 100%);
+    z-index: 2;
   }
 }

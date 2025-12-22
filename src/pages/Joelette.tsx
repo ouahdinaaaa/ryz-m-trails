@@ -1,7 +1,7 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ScrollReveal } from "@/components/ScrollReveal";
-import heroImage from "@/assets/hero-joelette.jpg";
+import heroImage from "@/assets/joelette.png";
 
 const steps = [
   { 
@@ -145,7 +145,7 @@ const Joelette = () => {
       </section>
 
       {/* Team roles */}
-      <section className="py-20">
+      {/* <section className="py-20">
         <div className="container mx-auto px-4">
           <ScrollReveal>
             <h2 className="font-display text-4xl md:text-5xl font-bold text-earth text-center mb-12">
@@ -191,7 +191,7 @@ const Joelette = () => {
             </ScrollReveal>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <Footer />
     </main>

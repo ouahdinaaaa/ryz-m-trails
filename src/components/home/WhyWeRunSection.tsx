@@ -55,8 +55,13 @@ export function WhyWeRunSection() {
 
             {/* ---------------------------------------------------- */}
             {/* 3. Gradient transitions (z-10) */}
-            {/* ---------------------------------------------------- */}
-            <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-white/80 to-transparent z-10" />
+            <div
+                className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b z-10"
+                style={{
+                    // Utilise la couleur rgb(238, 233, 225) à la place de white/80
+                    backgroundImage: "linear-gradient(to bottom, rgb(238,233,225) 80%, transparent 100%)"
+                }}
+            />
             <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white/60 to-transparent z-10" />
 
             {/* Content (Z-index z-20) */}

@@ -37,10 +37,9 @@ const stories = [
 
 export function StoriesSection() {
 	return (
-		<section className="py-24 relative overflow-hidden grain-overlay">
+		<section className="py-24 relative overflow-hidden">
 			{/* Paper texture only - no color */}
 			<div className="absolute inset-0">
-				<div className="absolute inset-0 paper-vintage opacity-[0.95]" />
 			</div>
 
 			<div className="container mx-auto px-4 relative z-10">

@@ -7,7 +7,6 @@ export function CTASection() {
       {/* Paper texture only - no color, avec overlay marron */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 paper-vintage opacity-[0.95]" />
-        <div className="absolute inset-0 bg-[#c9b69e]/30 mix-blend-multiply pointer-events-none" />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">

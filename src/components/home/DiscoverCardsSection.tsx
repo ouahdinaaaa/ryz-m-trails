@@ -148,14 +148,16 @@ export function DiscoverCardsSection() {
       />
 
       {/* 2. Le reste de la structure du composant (identique à la version précédente) */}
-      <section className="py-20 relative grain-overlay overflow-hidden">
+      <section
+        className="py-20 relative overflow-hidden"
+        style={{ backgroundColor: "#f3f2e5" }}
+      >
         {/* Vos effets de fond Tailwind sont conservés */}
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-cream/40 to-transparent z-10" />
         
         <div className="absolute inset-0">
           <div className="absolute top-0 left-0 w-1/2 h-1/2 bg-gradient-to-br from-nature/10 to-transparent rounded-full blur-3xl" />
           <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-gradient-to-tl from-orange/8 to-transparent rounded-full blur-3xl" />
-          <div className="absolute inset-0 paper-vintage opacity-80" />
         </div>
         <div className="absolute bottom-20 right-10 w-56 h-56 bg-orange/8 rounded-full blur-3xl" />
         

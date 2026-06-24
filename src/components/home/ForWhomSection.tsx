@@ -6,6 +6,7 @@ import leoImg from "@/assets/portrait-leo.jpg";
 import jasmineImg from "@/assets/portrait-jasmine.jpg";
 import { Link } from "react-router-dom";
 import { ArrowRight, ArrowLeft } from "lucide-react";
+import { AudioPlayButton } from "@/components/AudioPlayButton";
 
 // --- Définition des portraits ---
 const portraits = [
@@ -124,9 +125,15 @@ export function ForWhomSection() {
             {person.age}
           </span>
         </h3>
-        <p className="font-body text-sm text-muted-foreground leading-relaxed px-2">
+        <p className="font-body text-sm text-muted-foreground leading-relaxed px-2 mb-3">
           {person.description}
         </p>
+        <div className="flex justify-center">
+          <AudioPlayButton
+            text={`${person.name}, ${person.age}. ${person.description} ${person.hoverPhrase}`}
+            label="Écouter le témoignage"
+          />
+        </div>
       </div>
     </ScrollReveal>
   );

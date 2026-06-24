@@ -14,8 +14,11 @@ import VisionValeurs from "./pages/VisionValeurs";
 import Actions from "./pages/Actions";
 import Evenements from "./pages/Evenements";
 import Projets from "./pages/Projets";
+
 import NotFound from "./pages/NotFound";
-import { ScrollToTop } from "./components/ScrollToTop";
+import AdminDashboard from "./pages/AdminDashboard";
+import AdminLogin from "./pages/AdminLogin";
+import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +41,11 @@ const App = () => (
           <Route path="/actions" element={<Actions />} />
           <Route path="/evenements" element={<Evenements />} />
           <Route path="/projets" element={<Projets />} />
+          <Route path="/admin-login" element={<AdminLogin onLogin={(token: string) => {
+            localStorage.setItem("admin_token", token);
+            window.location.href = "/admin";
+          }} />} />
+          <Route path="/admin" element={<AdminDashboard />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

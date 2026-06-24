@@ -1,0 +1,25 @@
+{
+  "name": "ryz-backend",
+  "version": "1.0.0",
+  "description": "Backend pour RYZ'ÔM - gestion articles et calendrier d'événements",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js",
+    "test:connections": "node test-connections.js",
+    "generate:secret": "node generate-jwt-secret.js"
+  },
+  "dependencies": {
+    "cloudinary": "^2.9.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.0.0",
+    "multer": "^2.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.0"
+  }
+}

@@ -8,6 +8,7 @@ const navItems = [
   { label: "La Joëlette", href: "/joelette" },
   { label: "Nos Actions", href: "/actions" },
   { label: "Événements", href: "/evenements" },
+  { label: "Histoires", href: "/histoires" },
   { label: "Projets", href: "/projets" },
   { label: "Contact", href: "/contact" },
 ];
@@ -44,7 +45,7 @@ export function Header() {
         </Link>
 
         {/* Desktop Navigation */}
-        <ul className="hidden md:flex items-center gap-8">
+        <ul className="hidden lg:flex items-center gap-8">
           {navItems.map((item) => (
             <li key={item.href}>
               <Link
@@ -71,7 +72,7 @@ export function Header() {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="md:hidden p-2 text-foreground hover:text-earth transition-colors"
+          className="lg:hidden p-2 text-foreground hover:text-earth transition-colors"
           aria-label={isMobileMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
         >
           {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
@@ -81,7 +82,7 @@ export function Header() {
       {/* Mobile Menu */}
       <div
         className={cn(
-          "md:hidden absolute top-full left-0 right-0 bg-gradient-to-b from-amber-50/95 via-amber-100/92 to-white/92 backdrop-blur-md shadow-xl border-b border-amber-100 transition-all duration-300 overflow-hidden",
+          "lg:hidden absolute top-full left-0 right-0 bg-gradient-to-b from-amber-50/95 via-amber-100/92 to-white/92 backdrop-blur-md shadow-xl border-b border-amber-100 transition-all duration-300 overflow-hidden",
           isMobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         )}
       >

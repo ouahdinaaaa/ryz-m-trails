@@ -5,22 +5,51 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "sonner";
 import { Mail, MapPin, Heart } from "lucide-react";
 
+
 const Contact = () => {
+  // Pré-remplir le sujet depuis l'URL si présent
+  const getSubjectFromURL = () => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('subject') || "";
+    }
+    return "";
+  };
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    subject: "",
+    subject: getSubjectFromURL(),
     message: "",
   });
 
+  // Met à jour le sujet si l'URL change (navigation interne)
+  useEffect(() => {
+    const subject = getSubjectFromURL();
+    if (subject && subject !== formData.subject) {
+      setFormData((prev) => ({ ...prev, subject }));
+    }
+    // eslint-disable-next-line
+  }, [window.location.search]);
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success("Message envoyé ! Nous vous répondrons rapidement.");
-    setFormData({ name: "", email: "", subject: "", message: "" });
+    setIsSubmitting(true);
+    // Simulation d'envoi asynchrone
+    setTimeout(() => {
+        toast.success("Message envoyé !", {
+          description: "Nous reviendrons vers vous sous 48h.",
+          className: "font-body",
+        });
+        setFormData({ name: "", email: "", subject: "", message: "" });
+        setIsSubmitting(false);
+    }, 1500);
   };
 
   return (
@@ -125,11 +154,19 @@ const Contact = () => {
                   
                   <Button 
                     type="submit" 
-                    variant="organic" 
+                    variant="nature" 
                     size="xl" 
-                    className="w-full"
+                    className="w-full relative overflow-hidden"
+                    disabled={isSubmitting}
                   >
-                    Envoyer le message
+                    {isSubmitting ? (
+                      <span className="flex items-center gap-2">
+                        <span className="animate-spin h-5 w-5 border-2 border-white border-t-transparent rounded-full" />
+                        Envoi en cours...
+                      </span>
+                    ) : (
+                      "Envoyer le message"
+                    )}
                   </Button>
                 </div>
               </form>

@@ -1,0 +1,13 @@
+# Ne pas inclure dans l'image Docker
+node_modules
+npm-debug.log
+.env
+.env.local
+.git
+.gitignore
+README.md
+.vscode
+.idea
+*.md
+public/uploads/*
+!public/uploads/.gitkeep

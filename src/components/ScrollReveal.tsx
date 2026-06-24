@@ -52,11 +52,14 @@ export function ScrollReveal({
     <div
       ref={ref}
       className={cn(
-        "opacity-0",
+        "opacity-0 will-change-transform motion-reduce:transition-none motion-reduce:animate-none",
         isVisible && getAnimationClass(),
         className
       )}
-      style={{ animationDelay: `${delay}ms` }}
+      style={{ 
+        animationDelay: `${Math.min(delay, 500)}ms`, /* Cap delay to avoid long waits on scroll */
+        animationFillMode: 'forwards' 
+      }}
     >
       {children}
     </div>

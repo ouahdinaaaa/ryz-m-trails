@@ -1,0 +1,2 @@
+# Ce fichier permet de garder le dossier uploads/ dans Git
+# même s'il est vide (les images seront sur Cloudinary)

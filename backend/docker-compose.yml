@@ -1,0 +1,24 @@
+version: '3.8'
+services:
+  mongo:
+    image: mongo:7
+    container_name: mongo-dev
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+  backend:
+    build: .
+    container_name: ryz-backend
+    ports:
+      - "4000:4000"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/ryz
+      - ADMIN_SECRET=${ADMIN_SECRET}
+    depends_on:
+      - mongo
+    volumes:
+      - .:/app
+      - /app/node_modules
+volumes:
+  mongo_data:

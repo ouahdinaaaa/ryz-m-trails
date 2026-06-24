@@ -24,6 +24,7 @@ interface Event {
   participants?: string;
   icon?: string;
   isNight?: boolean;
+  image?: string;
 }
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4000/api";

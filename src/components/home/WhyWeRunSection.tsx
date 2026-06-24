@@ -1,4 +1,5 @@
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { TypewriterQuote } from "@/components/TypewriterQuote";
 import heroImage from "@/assets/we-why2.png"; // Assurez-vous que ce chemin est correct
 
 
@@ -163,6 +164,14 @@ export function WhyWeRunSection() {
                             </div>
                         ))}
                     </div>
+                </div>
+
+                {/* Citation machine-à-écrire qui se révèle au scroll */}
+                <div className="mt-16 md:mt-24">
+                    <TypewriterQuote
+                        text="On ne court pas pour gagner. On court pour ne laisser personne derrière."
+                        author="L'équipe Ryz'Ôm"
+                    />
                 </div>
             </div>
         </section>

@@ -5,20 +5,22 @@ import heroImage from "@/assets/acceuil.png";
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-start overflow-hidden pt-8 md:pt-12">
-      
-      {/* Background avec filtre artistique pour coller au design */}
+    <section className="relative min-h-screen flex flex-col items-center justify-start overflow-hidden pt-8 md:pt-12 bg-[#e8dfce]">
+
+      {/* Background — image identique desktop/mobile, recadrée intelligemment */}
       <div className="absolute inset-0">
         <img
           src={heroImage}
           alt="Course inclusive avec joëlette dans la nature"
-          className="w-full h-full object-cover shadow-inner"
-          style={{ 
+          className="w-full h-full object-cover object-[center_30%] md:object-center"
+          style={{
             filter: 'sepia(0.2) contrast(1.1) brightness(0.9)',
           }}
         />
-        {/* Overlay pour l'effet "peinture" en bas comme sur l'image */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/60" />
+        {/* Overlay papier vintage pour cohérence avec le reste du site */}
+        <div className="absolute inset-0 paper-vintage opacity-30 mix-blend-multiply pointer-events-none" />
+        {/* Dégradé bas */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#e8dfce]/80" />
       </div>
 
       {/* Main Content */}

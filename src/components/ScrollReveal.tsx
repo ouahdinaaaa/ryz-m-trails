@@ -5,6 +5,7 @@ interface ScrollRevealProps {
   children: ReactNode;
   className?: string;
   delay?: number;
+  duration?: number;
   direction?: "up" | "left" | "right" | "scale";
 }
 

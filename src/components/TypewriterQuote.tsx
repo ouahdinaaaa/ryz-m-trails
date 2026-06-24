@@ -13,7 +13,7 @@ interface TypewriterQuoteProps {
  * du bloc dans le viewport.
  */
 export function TypewriterQuote({ text, author, className }: TypewriterQuoteProps) {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLQuoteElement>(null);
   const [count, setCount] = useState(0);
   const [reduced, setReduced] = useState(false);
 

@@ -5,27 +5,145 @@
 @tailwind utilities;
 
 .grain-overlay {
-  /* Remplace ceci par ton background-image de grain si besoin */
-  background-image: url('/grain.png'); /* ou ton SVG inline */
-  background-size: 120px 120px; /* taille par défaut */
+  background-image: url('/grain.png');
+  background-size: 120px 120px;
   background-repeat: repeat;
 }
 
-.grain-lg {
-  background-size: 220px 220px;
+.grain-lg { background-size: 220px 220px; }
+.grain-2xl { background-size: 400px 400px; }
+.grain-8xl { background-size: 800px 800px; }
+.grain-8xl::after { background-size: 1200px 1200px !important; }
+
+/* Mobile: drastically tone down grain to avoid "broken TV" effect */
+@media (max-width: 768px) {
+  .grain-overlay {
+    opacity: 0.15 !important;
+    background-size: 280px 280px;
+    mix-blend-mode: multiply;
+  }
+  .grain-heavy::before,
+  .paper-vintage,
+  .card-watercolor::after,
+  .card-photo::after,
+  .card-article::before {
+    opacity: 0.02 !important;
+  }
 }
 
-.grain-2xl {
-  background-size: 400px 400px;
+/* === Creative hand-drawn utilities === */
+@layer components {
+  /* Washi tape strip */
+  .washi-tape {
+    position: absolute;
+    width: 90px;
+    height: 22px;
+    background: repeating-linear-gradient(45deg, hsl(var(--orange-light) / 0.85), hsl(var(--orange-light) / 0.85) 6px, hsl(var(--orange) / 0.7) 6px, hsl(var(--orange) / 0.7) 12px);
+    box-shadow: 0 2px 6px hsl(var(--earth) / 0.18);
+    transform: rotate(-6deg);
+  }
+  .washi-tape.washi-green { background: repeating-linear-gradient(45deg, hsl(var(--nature) / 0.75), hsl(var(--nature) / 0.75) 6px, hsl(85 50% 55% / 0.6) 6px, hsl(85 50% 55% / 0.6) 12px); }
+  .washi-tape.washi-blue  { background: repeating-linear-gradient(45deg, hsl(var(--sky) / 0.75), hsl(var(--sky) / 0.75) 6px, hsl(200 55% 78% / 0.6) 6px, hsl(200 55% 78% / 0.6) 12px); }
+
+  /* Postal stamp */
+  .postal-stamp {
+    @apply relative inline-flex items-center justify-center px-6 py-3 font-marker text-xl tracking-widest uppercase;
+    color: hsl(var(--rust));
+    border: 3px double hsl(var(--rust) / 0.7);
+    border-radius: 6px;
+    background: hsl(var(--cream));
+    transform: rotate(-4deg);
+    box-shadow: 2px 2px 0 hsl(var(--rust) / 0.25);
+    transition: transform 0.3s;
+  }
+  .postal-stamp:hover { transform: rotate(0deg) scale(1.05); }
+  .postal-stamp::before {
+    content: '';
+    position: absolute; inset: -8px;
+    border-radius: 8px;
+    background-image: radial-gradient(circle, hsl(var(--cream)) 3px, transparent 3.5px);
+    background-size: 8px 8px;
+    background-position: -4px -4px;
+    z-index: -1;
+  }
+
+  /* Hand drawn underline (animated draw on scroll) */
+  .underline-hand {
+    position: relative;
+    display: inline-block;
+  }
+  .underline-hand::after {
+    content: '';
+    position: absolute;
+    left: -4px; right: -4px; bottom: -8px;
+    height: 10px;
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 10' preserveAspectRatio='none'><path d='M2 6 Q 40 2 90 5 T 198 4' stroke='%23c2521f' stroke-width='2.5' fill='none' stroke-linecap='round'/></svg>") no-repeat center/100% 100%;
+    opacity: 0.85;
+  }
+
+  /* Post-it note */
+  .postit {
+    @apply relative p-5 font-camping text-xl;
+    background: linear-gradient(180deg, hsl(48 90% 78%) 0%, hsl(45 85% 72%) 100%);
+    color: hsl(var(--earth));
+    box-shadow: 3px 5px 12px hsl(var(--earth) / 0.18), inset 0 1px 0 hsl(50 100% 90%);
+    transform: rotate(var(--rotation, -2deg));
+    transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+  }
+  .postit.postit-pink   { background: linear-gradient(180deg, hsl(350 80% 85%), hsl(345 75% 80%)); }
+  .postit.postit-green  { background: linear-gradient(180deg, hsl(95 55% 80%),  hsl(90 50% 72%)); }
+  .postit.postit-blue   { background: linear-gradient(180deg, hsl(200 70% 82%), hsl(200 65% 75%)); }
+  .postit:hover { transform: rotate(0deg) translateY(-4px); }
+
+  /* Ticket with perforated edges */
+  .ticket {
+    @apply relative bg-cream;
+    border-radius: 6px;
+    -webkit-mask:
+      radial-gradient(8px at 8px 50%, transparent 98%, #000) -8px 0/100% 100%,
+      radial-gradient(8px at calc(100% - 8px) 50%, transparent 98%, #000) 8px 0/100% 100%;
+    mask:
+      radial-gradient(8px at 8px 50%, transparent 98%, #000) -8px 0/100% 100%,
+      radial-gradient(8px at calc(100% - 8px) 50%, transparent 98%, #000) 8px 0/100% 100%;
+    -webkit-mask-composite: source-in;
+            mask-composite: intersect;
+    box-shadow: 4px 4px 0 hsl(var(--earth) / 0.18);
+  }
+
+  /* Handwritten input field — line only, no box */
+  .input-handwritten {
+    @apply w-full bg-transparent px-1 py-2 font-body text-lg text-foreground placeholder:text-muted-foreground/60 focus:outline-none transition-colors;
+    border: none;
+    border-bottom: 2px dashed hsl(var(--earth) / 0.45);
+  }
+  .input-handwritten:focus {
+    border-bottom-color: hsl(var(--orange));
+    border-bottom-style: solid;
+  }
+
+  /* Animated drawn arrow indicator */
+  @keyframes drawArrow {
+    from { stroke-dashoffset: 200; }
+    to   { stroke-dashoffset: 0; }
+  }
+  .arrow-draw path {
+    stroke-dasharray: 200;
+    stroke-dashoffset: 200;
+    animation: drawArrow 1.4s ease-out forwards;
+  }
+
+  /* Floating wobble */
+  @keyframes wobble-soft {
+    0%, 100% { transform: rotate(-1deg) translateY(0); }
+    50%      { transform: rotate(1deg)  translateY(-4px); }
+  }
+  .wobble { animation: wobble-soft 5s ease-in-out infinite; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .wobble, .arrow-draw path { animation: none !important; }
+  }
 }
 
-.grain-8xl {
-  background-size: 800px 800px;
-}
-
-.grain-8xl::after {
-  background-size: 1200px 1200px !important;
-}
 
 @layer base {
   :root {

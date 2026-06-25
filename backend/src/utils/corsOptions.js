@@ -2,26 +2,31 @@
 import cors from 'cors';
 
 const allowedOrigins = [
-  'http://localhost:5173',  // Dev local Vite
-  'http://localhost:3000',  // Dev local alternatif
-  process.env.FRONTEND_URL  // URL de production Vercel (ex: https://ryzom.vercel.app)
-].filter(Boolean); // Retire les valeurs undefined
+  'http://localhost:5173',
+  'http://localhost:3000',
+  process.env.FRONTEND_URL,
+]
+  .filter(Boolean)
+  .map(origin => origin.replace(/\/$/, '')); // enlève slash final
 
 const corsOptions = {
   origin: (origin, callback) => {
-    // Autorise les requêtes sans origin (mobile apps, Postman, etc.)
+    // autorise Postman / mobile apps / curl
     if (!origin) return callback(null, true);
-    
-    if (allowedOrigins.includes(origin) || process.env.NODE_ENV === 'development') {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
+
+    const cleanOrigin = origin.replace(/\/$/, '');
+
+    if (allowedOrigins.includes(cleanOrigin)) {
+      return callback(null, true);
     }
+
+    console.log("❌ CORS blocked origin:", origin);
+    return callback(null, false);
   },
+
   credentials: true,
   optionsSuccessStatus: 200,
 };
 
 export default corsOptions;
-
 

@@ -72,15 +72,31 @@ const articles = [
   },
 ];
 
+
+
 async function insertArticles() {
   try {
-    await mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
-    await Article.deleteMany({}); // Optionnel : vide la collection avant insertion
+    if (!MONGO_URI) {
+      throw new Error("❌ MONGO_URI is missing");
+    }
+
+    console.log("🔌 Connecting to MongoDB...");
+
+    await mongoose.connect(MONGO_URI, {
+      serverSelectionTimeoutMS: 10000,
+    });
+
+    console.log("✅ Connected to MongoDB");
+
+    await Article.deleteMany({});
+    console.log("🧹 Old articles cleared");
+
     await Article.insertMany(articles);
-    console.log('Articles insérés avec succès !');
+    console.log("🚀 Articles inserted successfully");
+
     process.exit(0);
   } catch (err) {
-    console.error('Erreur lors de l\'insertion :', err);
+    console.error("❌ Error inserting articles:", err);
     process.exit(1);
   }
 }

@@ -1,4 +1,3 @@
-// Script pour insérer les événements bruts dans la base MongoDB
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import Event from './models/Event.js';
@@ -94,11 +93,32 @@ const events = [
 ];
 
 async function insertEvents() {
-  await mongoose.connect(MONGO_URI);
-  await Event.deleteMany({}); // Optionnel : vide la collection avant insertion
-  await Event.insertMany(events);
-  console.log('Événements insérés !');
-  await mongoose.disconnect();
+  try {
+    if (!MONGO_URI) {
+      throw new Error("❌ MONGO_URI is missing");
+    }
+
+    console.log("🔌 Connecting to MongoDB...");
+
+    await mongoose.connect(MONGO_URI, {
+      serverSelectionTimeoutMS: 10000,
+    });
+
+    console.log("✅ Connected to MongoDB");
+
+    await Event.deleteMany({});
+    console.log("🧹 Old events cleared");
+
+    await Event.insertMany(events);
+    console.log("🚀 Events inserted successfully");
+
+  } catch (err) {
+    console.error("❌ Error inserting events:", err);
+    process.exitCode = 1;
+  } finally {
+    await mongoose.disconnect();
+    console.log("🔌 Disconnected from MongoDB");
+  }
 }
 
 insertEvents();

@@ -1,4 +1,5 @@
 import express from 'express';
+
 const router = express.Router();
 
 // Affiche le formulaire de connexion admin
@@ -17,16 +18,36 @@ router.get('/', (req, res) => {
   `);
 });
 
-// Traite la connexion admin
-router.post('/', (req, res) => {
-  const adminSecret = process.env.ADMIN_SECRET || 'changeme';
-  const { secret } = req.body;
-  if (secret === adminSecret) {
-    // Ici, on pourrait créer une session/cookie, mais on affiche juste un message
-    res.send('<h3>Connexion réussie !</h3>');
-  } else {
-    res.status(401).send('<h3>Clé incorrecte</h3>');
+// IMPORTANT: parse urlencoded ici pour éviter bug prod
+router.post(
+  '/',
+  express.urlencoded({ extended: true }),
+  (req, res) => {
+    try {
+      const adminSecret = process.env.ADMIN_SECRET;
+
+      if (!adminSecret) {
+        console.error("❌ ADMIN_SECRET missing");
+        return res.status(500).send('<h3>Server misconfigured</h3>');
+      }
+
+      const { secret } = req.body;
+
+      if (!secret) {
+        return res.status(400).send('<h3>Missing secret</h3>');
+      }
+
+      if (secret === adminSecret) {
+        return res.send('<h3>Connexion réussie !</h3>');
+      }
+
+      return res.status(401).send('<h3>Clé incorrecte</h3>');
+
+    } catch (err) {
+      console.error("❌ Admin route error:", err);
+      return res.status(500).send('<h3>Server error</h3>');
+    }
   }
-});
+);
 
 export default router;

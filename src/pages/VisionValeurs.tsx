@@ -1,6 +1,8 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { TypewriterQuote } from "@/components/TypewriterQuote";
+
 import { AnimatedKeyword } from "@/components/AnimatedKeyword";
 import { WordReveal } from "@/components/WordReveal";
 import { ParallaxSection } from "@/components/ParallaxSection";

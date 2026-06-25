@@ -1,6 +1,8 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { TypewriterQuote } from "@/components/TypewriterQuote";
+
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-joelette.jpg";
@@ -66,17 +68,20 @@ const Engager = () => {
           <div className="grid md:grid-cols-3 gap-8">
             {engagements.map((engagement, index) => (
               <ScrollReveal key={engagement.title} delay={index * 150}>
-                <div className="bg-card rounded-xl p-8 shadow-card hover:shadow-hover transition-all duration-500 h-full flex flex-col group hover:-translate-y-2">
+                <div
+                  className="card-handmade p-8 h-full flex flex-col group"
+                  style={{ transform: `rotate(${index % 2 === 0 ? "-0.6deg" : "0.6deg"})` }}
+                >
                   <div className="text-6xl mb-6 group-hover:scale-110 transition-transform duration-300">
                     {engagement.icon}
                   </div>
-                  <h2 className="font-display text-3xl font-semibold text-foreground mb-4">
+                  <h2 className="font-marker text-3xl text-earth mb-4">
                     {engagement.title}
                   </h2>
                   <p className="font-body text-muted-foreground mb-6 flex-1">
                     {engagement.description}
                   </p>
-                  
+
                   <ul className="mb-8 space-y-2">
                     {engagement.benefits.map((benefit) => (
                       <li key={benefit} className="flex items-center gap-2 font-body text-sm text-foreground">
@@ -85,7 +90,7 @@ const Engager = () => {
                       </li>
                     ))}
                   </ul>
-                  
+
                   <Button variant="organic" className="w-full" asChild>
                     <Link to="/contact">{engagement.cta}</Link>
                   </Button>
@@ -96,20 +101,14 @@ const Engager = () => {
         </div>
       </section>
 
-      {/* Quote */}
-      <section className="py-20 bg-earth text-primary-foreground">
+      {/* Quote - typewriter */}
+      <section className="py-20 bg-earth text-primary-foreground relative overflow-hidden">
         <div className="container mx-auto px-4">
-          <ScrollReveal>
-            <blockquote className="max-w-3xl mx-auto text-center">
-              <p className="font-display text-3xl md:text-4xl italic mb-6">
-                "La première fois que j'ai poussé une joëlette, j'ai compris que je 
-                recevais bien plus que ce que je donnais. C'est ça, la magie de RYZ'ÔM."
-              </p>
-              <footer className="font-body text-primary-foreground/80">
-                — Thomas, bénévole depuis 2021
-              </footer>
-            </blockquote>
-          </ScrollReveal>
+          <TypewriterQuote
+            text="La première fois que j'ai poussé une joëlette, j'ai compris que je recevais bien plus que ce que je donnais. C'est ça, la magie de RYZ'ÔM."
+            author="Thomas, bénévole depuis 2021"
+            className="!text-cream/95 max-w-3xl"
+          />
         </div>
       </section>
 
@@ -124,17 +123,21 @@ const Engager = () => {
               { number: "1000+", label: "Kilomètres partagés" },
             ].map((stat, index) => (
               <ScrollReveal key={stat.label} delay={index * 100}>
-                <div className="bg-card rounded-xl p-8 shadow-card">
-                  <p className="font-display text-5xl font-bold text-orange mb-2">
+                <div
+                  className="card-handmade p-8"
+                  style={{ transform: `rotate(${index % 2 === 0 ? "-1deg" : "1deg"})` }}
+                >
+                  <p className="font-marker text-5xl text-orange mb-2">
                     {stat.number}
                   </p>
-                  <p className="font-body text-muted-foreground">{stat.label}</p>
+                  <p className="font-camping text-xl text-earth/80">{stat.label}</p>
                 </div>
               </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
+
 
       <Footer />
     </main>

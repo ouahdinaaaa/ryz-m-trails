@@ -29,7 +29,61 @@
   .card-article::before {
     opacity: 0.02 !important;
   }
+
+  /* === Kill ugly translucent panels on mobile === */
+  /* backdrop-blur looks broken on most mobiles → disable */
+  [class*="backdrop-blur"] {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  /* Opaque-ify common translucent card backgrounds */
+  .bg-white\/90, .bg-white\/80, .bg-white\/70, .bg-white\/60,
+  .bg-cream\/70, .bg-cream\/60, .bg-cream\/50, .bg-cream\/40, .bg-cream\/30 {
+    background-color: hsl(var(--cream)) !important;
+  }
+  .bg-white\/20, .bg-white\/30, .bg-black\/20, .bg-black\/30 {
+    background-color: hsl(var(--cream)) !important;
+    color: hsl(var(--earth)) !important;
+  }
+  .bg-primary-foreground\/5, .bg-primary-foreground\/10 {
+    background-color: hsl(var(--cream) / 0.95) !important;
+    color: hsl(var(--earth)) !important;
+  }
+  /* Tame big card radii on mobile — flatten to 6px */
+  .rounded-3xl, .rounded-2xl, .rounded-xl { border-radius: 6px !important; }
+  .rounded-full.px-4, .rounded-full.px-6, .rounded-full.px-8 { border-radius: 6px !important; }
 }
+
+/* === Universal "handmade" card === */
+.card-handmade {
+  background-color: hsl(var(--cream));
+  border: 1px solid hsl(var(--earth) / 0.14);
+  border-radius: 5px;
+  box-shadow: 3px 3px 0 hsl(var(--earth) / 0.14), 6px 10px 22px hsl(var(--earth) / 0.08);
+  transition: transform .35s cubic-bezier(.4,0,.2,1), box-shadow .35s;
+}
+.card-handmade:hover {
+  transform: translateY(-4px) rotate(-.4deg);
+  box-shadow: 4px 5px 0 hsl(var(--earth) / 0.18), 8px 14px 28px hsl(var(--earth) / 0.12);
+}
+
+/* Tag chip - flat, hand-drawn */
+.chip-paper {
+  display: inline-block;
+  padding: 0.3rem 0.9rem;
+  font-family: 'Amatic SC', cursive;
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 0.05em;
+  background: hsl(var(--cream));
+  color: hsl(var(--earth));
+  border: 1.5px solid hsl(var(--earth) / 0.25);
+  border-radius: 5px;
+  transform: rotate(-1deg);
+}
+.chip-paper.chip-orange { color: hsl(var(--orange)); border-color: hsl(var(--orange) / 0.4); }
+.chip-paper.chip-nature { color: hsl(var(--nature)); border-color: hsl(var(--nature) / 0.4); }
+
 
 /* === Creative hand-drawn utilities === */
 @layer components {

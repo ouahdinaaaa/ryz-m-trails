@@ -1,21 +1,14 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ScrollReveal } from "@/components/ScrollReveal";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
 import { useState, useEffect } from "react";
 import { toast } from "sonner";
-import { Mail, MapPin, Heart } from "lucide-react";
-
+import { Mail, MapPin, Heart, Send } from "lucide-react";
 
 const Contact = () => {
-  // Pré-remplir le sujet depuis l'URL si présent
   const getSubjectFromURL = () => {
-    if (typeof window !== 'undefined') {
-      const params = new URLSearchParams(window.location.search);
-      return params.get('subject') || "";
+    if (typeof window !== "undefined") {
+      return new URLSearchParams(window.location.search).get("subject") || "";
     }
     return "";
   };
@@ -26,230 +19,216 @@ const Contact = () => {
     subject: getSubjectFromURL(),
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Met à jour le sujet si l'URL change (navigation interne)
   useEffect(() => {
     const subject = getSubjectFromURL();
     if (subject && subject !== formData.subject) {
       setFormData((prev) => ({ ...prev, subject }));
     }
-    // eslint-disable-next-line
-  }, [window.location.search]);
-
-  const [isSubmitting, setIsSubmitting] = useState(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulation d'envoi asynchrone
     setTimeout(() => {
-        toast.success("Message envoyé !", {
-          description: "Nous reviendrons vers vous sous 48h.",
-          className: "font-body",
-        });
-        setFormData({ name: "", email: "", subject: "", message: "" });
-        setIsSubmitting(false);
-    }, 1500);
+      toast.success("Message envoyé !", {
+        description: "Nous reviendrons vers vous sous 48h.",
+        className: "font-body",
+      });
+      setFormData({ name: "", email: "", subject: "", message: "" });
+      setIsSubmitting(false);
+    }, 1200);
   };
 
   return (
-    <main className="min-h-screen relative overflow-hidden">
-      {/* Watercolor background effect */}
+    <main className="min-h-screen relative overflow-hidden bg-paper-texture">
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 left-0 w-1/2 h-1/2 bg-gradient-to-br from-nature/10 to-transparent rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-gradient-to-tl from-orange/8 to-transparent rounded-full blur-3xl" />
-        <div className="absolute inset-0 paper-vintage opacity-80" />
+        <div className="absolute top-20 -left-20 w-[40vw] h-[40vw] bg-nature/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 -right-20 w-[40vw] h-[40vw] bg-orange/10 rounded-full blur-3xl" />
       </div>
+
       <Header />
-      
+
       {/* Hero */}
-      <section className="pt-32 pb-16">
-        <div className="container mx-auto px-4 text-center">
+      <section className="pt-28 sm:pt-32 pb-10 px-4">
+        <div className="container mx-auto text-center max-w-3xl">
           <ScrollReveal>
-            <h1 className="font-display text-6xl md:text-8xl font-bold text-earth mb-4">
-              Contact
-            </h1>
-          </ScrollReveal>
-          <ScrollReveal delay={200}>
-            <p className="font-display text-2xl text-muted-foreground mb-2">
-              « Écrivons la suite ensemble »
+            <p className="font-marker text-orange text-base sm:text-lg mb-3 -rotate-2 inline-block">
+              ✉ Une carte postale pour nous ✉
             </p>
           </ScrollReveal>
-          <ScrollReveal delay={400}>
-            <p className="font-body text-foreground/80 max-w-xl mx-auto">
-              Une question, une envie de nous rejoindre, ou simplement dire bonjour ? 
-              Nous sommes là pour vous répondre.
+          <ScrollReveal delay={150}>
+            <h1 className="title-jungle text-5xl sm:text-7xl md:text-8xl mb-5 leading-[0.9]">
+              <span className="underline-hand">Écrivons</span>-nous
+            </h1>
+          </ScrollReveal>
+          <ScrollReveal delay={300}>
+            <p className="font-body text-foreground/80 text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
+              Une question, une envie de rejoindre l'aventure, ou simplement un bonjour ?
+              On lit chaque mot, promis.
             </p>
           </ScrollReveal>
         </div>
       </section>
 
-      {/* Contact Form & Info */}
-      <section className="pb-24">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-16 items-start">
-            {/* Form */}
+      {/* Postcard */}
+      <section className="pb-20 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-6 items-start">
+            {/* LEFT — handwritten letter */}
             <ScrollReveal>
-              <form onSubmit={handleSubmit} className="bg-card rounded-2xl p-8 shadow-card">
-                <div className="space-y-6">
+              <form
+                onSubmit={handleSubmit}
+                className="relative bg-cream p-7 sm:p-10 shadow-card border border-earth/15"
+                style={{
+                  backgroundImage:
+                    "repeating-linear-gradient(to bottom, transparent 0, transparent 38px, hsl(var(--earth) / 0.08) 38px, hsl(var(--earth) / 0.08) 39px)",
+                  borderRadius: "6px",
+                  transform: "rotate(-0.6deg)",
+                }}
+              >
+                {/* Washi tape decoration */}
+                <span className="washi-tape washi-blue" style={{ top: -10, left: 30 }} aria-hidden />
+                <span className="washi-tape washi-green" style={{ top: -12, right: 40, transform: "rotate(7deg)" }} aria-hidden />
+
+                <h2 className="font-marker text-3xl sm:text-4xl text-earth mb-6 -rotate-1">
+                  Cher RYZ'ÔM,
+                </h2>
+
+                <div className="space-y-7">
                   <div>
-                    <Label htmlFor="name" className="font-display text-lg text-foreground">
-                      Votre nom
-                    </Label>
-                    <Input
+                    <label htmlFor="name" className="font-camping text-xl text-earth/80 block mb-1">
+                      Je m'appelle
+                    </label>
+                    <input
                       id="name"
                       type="text"
+                      required
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      required
-                      className="mt-2 bg-background border-2 border-border rounded-xl focus:border-orange focus:ring-orange/20 transition-all font-body"
+                      className="input-handwritten"
                       placeholder="Jean Dupont"
                     />
                   </div>
-                  
+
                   <div>
-                    <Label htmlFor="email" className="font-display text-lg text-foreground">
-                      Votre email
-                    </Label>
-                    <Input
+                    <label htmlFor="email" className="font-camping text-xl text-earth/80 block mb-1">
+                      Mon adresse
+                    </label>
+                    <input
                       id="email"
                       type="email"
+                      required
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      required
-                      className="mt-2 bg-background border-2 border-border rounded-xl focus:border-orange focus:ring-orange/20 transition-all font-body"
+                      className="input-handwritten"
                       placeholder="jean@example.com"
                     />
                   </div>
-                  
+
                   <div>
-                    <Label htmlFor="subject" className="font-display text-lg text-foreground">
-                      Sujet
-                    </Label>
-                    <Input
+                    <label htmlFor="subject" className="font-camping text-xl text-earth/80 block mb-1">
+                      À propos de
+                    </label>
+                    <input
                       id="subject"
                       type="text"
+                      required
                       value={formData.subject}
                       onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                      required
-                      className="mt-2 bg-background border-2 border-border rounded-xl focus:border-orange focus:ring-orange/20 transition-all font-body"
-                      placeholder="Devenir bénévole, participer à une course..."
+                      className="input-handwritten"
+                      placeholder="Devenir bénévole, proposer un défi…"
                     />
                   </div>
-                  
+
                   <div>
-                    <Label htmlFor="message" className="font-display text-lg text-foreground">
-                      Votre message
-                    </Label>
-                    <Textarea
+                    <label htmlFor="message" className="font-camping text-xl text-earth/80 block mb-1">
+                      Ce que je voulais vous dire
+                    </label>
+                    <textarea
                       id="message"
+                      rows={6}
+                      required
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      required
-                      rows={5}
-                      className="mt-2 bg-background border-2 border-border rounded-xl focus:border-orange focus:ring-orange/20 transition-all font-body resize-none"
-                      placeholder="Parlez-nous de vous et de votre envie de nous rejoindre..."
+                      className="input-handwritten resize-none"
+                      placeholder="Racontez-nous…"
+                      style={{
+                        backgroundImage:
+                          "repeating-linear-gradient(to bottom, transparent 0, transparent 31px, hsl(var(--earth) / 0.18) 31px, hsl(var(--earth) / 0.18) 32px)",
+                        borderBottom: "none",
+                        lineHeight: "32px",
+                      }}
                     />
                   </div>
-                  
-                  <Button 
-                    type="submit" 
-                    variant="nature" 
-                    size="xl" 
-                    className="w-full relative overflow-hidden"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? (
-                      <span className="flex items-center gap-2">
-                        <span className="animate-spin h-5 w-5 border-2 border-white border-t-transparent rounded-full" />
-                        Envoi en cours...
-                      </span>
-                    ) : (
-                      "Envoyer le message"
-                    )}
-                  </Button>
+
+                  <div className="flex items-end justify-between pt-2">
+                    <p className="font-marker text-earth/70 text-lg -rotate-2">— Bien à vous</p>
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="postal-stamp disabled:opacity-60"
+                      aria-label="Envoyer le message"
+                    >
+                      {isSubmitting ? (
+                        <span className="inline-flex items-center gap-2">
+                          <span className="animate-spin h-4 w-4 border-2 border-rust border-t-transparent rounded-full" />
+                          Envoi…
+                        </span>
+                      ) : (
+                        <span className="inline-flex items-center gap-2">
+                          <Send className="w-4 h-4" /> Envoyer
+                        </span>
+                      )}
+                    </button>
+                  </div>
                 </div>
               </form>
             </ScrollReveal>
 
-            {/* Contact Info */}
-            <div className="space-y-8">
+            {/* RIGHT — sticky notes & info */}
+            <div className="space-y-8 lg:pt-10">
               <ScrollReveal direction="right">
-                <div className="bg-secondary/50 rounded-2xl p-8">
-                  <h2 className="font-display text-3xl font-semibold text-earth mb-6">
-                    Contacts Officiels
-                  </h2>
-                  
-                  <div className="space-y-6">
-                    <div className="p-4 bg-card rounded-xl">
-                      <p className="font-display text-lg text-foreground font-semibold">
-                        Président
-                      </p>
-                      <p className="font-body text-muted-foreground">
-                        À votre écoute pour toute question stratégique
-                      </p>
-                    </div>
-                    
-                    <div className="p-4 bg-card rounded-xl">
-                      <p className="font-display text-lg text-foreground font-semibold">
-                        Trésorier
-                      </p>
-                      <p className="font-body text-muted-foreground">
-                        Pour les dons et partenariats financiers
-                      </p>
-                    </div>
-                    
-                    <a 
-                      href="mailto:contact@ryzom.org"
-                      className="flex items-center gap-4 p-4 bg-card rounded-xl hover:shadow-soft transition-all group"
-                    >
-                      <div className="w-12 h-12 rounded-full bg-orange/20 flex items-center justify-center">
-                        <Mail className="text-orange" size={24} />
-                      </div>
-                      <div>
-                        <p className="font-display text-lg text-foreground group-hover:text-earth transition-colors">
-                          contact@ryzom.org
-                        </p>
-                        <p className="font-body text-sm text-muted-foreground">
-                          Réponse sous 48h
-                        </p>
-                      </div>
-                    </a>
-                    
-                    <div className="flex items-center gap-4 p-4 bg-card rounded-xl">
-                      <div className="w-12 h-12 rounded-full bg-nature/20 flex items-center justify-center">
-                        <MapPin className="text-nature" size={24} />
-                      </div>
-                      <div>
-                        <p className="font-display text-lg text-foreground">
-                          France entière
-                        </p>
-                        <p className="font-body text-sm text-muted-foreground">
-                          Nous intervenons partout
-                        </p>
-                      </div>
-                    </div>
-                  </div>
+                <div className="postit postit-blue" style={{ ["--rotation" as never]: "1.5deg" }}>
+                  <p className="font-marker text-2xl text-earth mb-2">📮 Email direct</p>
+                  <a
+                    href="mailto:contact@ryzom.org"
+                    className="font-body text-lg text-earth underline decoration-wavy underline-offset-4 break-all"
+                  >
+                    contact@ryzom.org
+                  </a>
+                  <p className="font-body text-sm text-earth/70 mt-1">Réponse sous 48h</p>
                 </div>
               </ScrollReveal>
 
-              <ScrollReveal direction="right" delay={200}>
-                <div className="bg-earth text-primary-foreground rounded-2xl p-8">
-                  <div className="flex items-center gap-3 mb-4">
-                    <Heart className="text-orange fill-orange" size={24} />
-                    <h3 className="font-display text-2xl font-semibold">
-                      Collaborons ensemble
-                    </h3>
-                  </div>
-                  <p className="font-body leading-relaxed mb-4">
-                    Que vous soyez une institution, une entreprise, une école ou un particulier, 
-                    nous sommes ouverts à toutes les collaborations. Inventons ensemble de nouvelles 
-                    façons de rendre l'aventure accessible à tous !
+              <ScrollReveal direction="right" delay={150}>
+                <div className="postit postit-green" style={{ ["--rotation" as never]: "-2deg" }}>
+                  <p className="font-marker text-2xl text-earth mb-2 flex items-center gap-2">
+                    <MapPin className="w-5 h-5" /> Où nous trouver
                   </p>
-                  <p className="font-display text-orange text-lg italic">
-                    « Chaque message est une porte qui s'ouvre. »
+                  <p className="font-body text-lg text-earth">France entière</p>
+                  <p className="font-body text-sm text-earth/70">On court partout où il y a un sentier.</p>
+                </div>
+              </ScrollReveal>
+
+              <ScrollReveal direction="right" delay={300}>
+                <div className="postit postit-pink" style={{ ["--rotation" as never]: "2.5deg" }}>
+                  <p className="font-marker text-2xl text-earth mb-2 flex items-center gap-2">
+                    <Heart className="w-5 h-5 fill-rust text-rust" /> Collaborons
+                  </p>
+                  <p className="font-body text-base text-earth leading-relaxed">
+                    Institution, entreprise, école, particulier — toutes les rencontres comptent.
+                    Inventons ensemble.
                   </p>
                 </div>
+              </ScrollReveal>
+
+              <ScrollReveal delay={450}>
+                <p className="font-marker text-center text-earth/70 text-xl -rotate-1 pt-4">
+                  « Chaque message est une porte qui s'ouvre. »
+                </p>
               </ScrollReveal>
             </div>
           </div>

@@ -9,24 +9,25 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90 rounded-md shadow-soft hover:shadow-hover hover:-translate-y-0.5",
-        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90 rounded-md",
-        outline: "border-2 border-primary bg-transparent text-primary hover:bg-primary hover:text-primary-foreground rounded-md",
-        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80 rounded-md",
-        ghost: "hover:bg-accent hover:text-accent-foreground rounded-md",
+        default: "bg-primary text-primary-foreground hover:bg-primary/90 rounded-[6px] shadow-soft hover:shadow-hover hover:-translate-y-0.5",
+        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90 rounded-[6px]",
+        outline: "border-2 border-primary bg-transparent text-primary hover:bg-primary hover:text-primary-foreground rounded-[6px]",
+        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80 rounded-[6px]",
+        ghost: "hover:bg-accent hover:text-accent-foreground rounded-[6px]",
         link: "text-primary underline-offset-4 hover:underline",
-        organic: "bg-earth text-primary-foreground font-display text-lg rounded-full shadow-soft hover:shadow-hover hover:-translate-y-1 px-8",
-        nature: "bg-nature text-accent-foreground font-display text-lg rounded-full shadow-soft hover:shadow-hover hover:-translate-y-1 px-8",
-        orange: "bg-orange text-primary-foreground font-display text-lg rounded-full shadow-soft hover:shadow-hover hover:-translate-y-1 px-8",
-        "organic-outline": "border-2 border-earth bg-transparent text-earth font-display text-lg rounded-full hover:bg-earth hover:text-primary-foreground px-8",
+        organic: "bg-earth text-primary-foreground font-display text-lg rounded-[8px] shadow-soft hover:shadow-hover hover:-translate-y-1 px-8",
+        nature: "bg-nature text-accent-foreground font-display text-lg rounded-[8px] shadow-soft hover:shadow-hover hover:-translate-y-1 px-8",
+        orange: "bg-orange text-primary-foreground font-display text-lg rounded-[8px] shadow-soft hover:shadow-hover hover:-translate-y-1 px-8",
+        "organic-outline": "border-2 border-earth bg-transparent text-earth font-display text-lg rounded-[8px] hover:bg-earth hover:text-primary-foreground px-8",
       },
       size: {
         default: "h-10 px-4 py-2",
-        sm: "h-9 rounded-md px-3",
+        sm: "h-9 rounded-[6px] px-3",
         lg: "h-12 px-8 py-3",
         xl: "h-14 px-10 py-4 text-lg",
         icon: "h-10 w-10",
       },
+
     },
     defaultVariants: {
       variant: "default",

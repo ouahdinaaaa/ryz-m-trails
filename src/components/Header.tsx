@@ -79,32 +79,49 @@ export function Header() {
         </button>
       </nav>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu — carnet ouvert */}
       <div
         className={cn(
-          "lg:hidden absolute top-full left-0 right-0 bg-gradient-to-b from-amber-50/95 via-amber-100/92 to-white/92 backdrop-blur-md shadow-xl border-b border-amber-100 transition-all duration-300 overflow-hidden",
-          isMobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+          "lg:hidden absolute top-full left-0 right-0 transition-all duration-500 overflow-hidden",
+          isMobileMenuOpen ? "max-h-[80vh] opacity-100" : "max-h-0 opacity-0"
         )}
       >
-        <ul className="container mx-auto px-4 py-4 flex flex-col gap-4">
-          {navItems.map((item) => (
-            <li key={item.href}>
-              <Link
-                to={item.href}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className={cn(
-                  "block font-serif italic font-semibold text-lg py-2 px-3 rounded-md transition-all text-stone-800 hover:translate-x-1",
-                  location.pathname === item.href
-                    ? "text-orange bg-amber-50/80 shadow-sm"
-                    : "hover:text-orange hover:bg-amber-100/80"
-                )}
+        <div
+          className="mx-3 mt-2 p-6 bg-cream border border-earth/20 shadow-card"
+          style={{
+            borderRadius: "6px",
+            backgroundImage:
+              "repeating-linear-gradient(to bottom, transparent 0, transparent 44px, hsl(var(--earth) / 0.08) 44px, hsl(var(--earth) / 0.08) 45px)",
+          }}
+        >
+          <ul className="flex flex-col gap-1">
+            {navItems.map((item, i) => (
+              <li
+                key={item.href}
+                style={{
+                  animation: isMobileMenuOpen
+                    ? `fade-in 0.4s ease-out ${i * 60}ms both`
+                    : undefined,
+                }}
               >
-                {item.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
+                <Link
+                  to={item.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={cn(
+                    "block font-camping text-3xl py-2 px-2 transition-all hover:translate-x-2",
+                    location.pathname === item.href
+                      ? "text-orange underline-hand"
+                      : "text-earth hover:text-orange"
+                  )}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
+
     </header>
   );
 }

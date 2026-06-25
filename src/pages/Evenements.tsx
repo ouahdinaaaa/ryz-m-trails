@@ -73,83 +73,88 @@ const EventCard = ({ event, index }: { event: Event; index: number }) => {
 
   const isPast = event.date ? new Date(event.date) < new Date(new Date().setHours(0,0,0,0)) : false;
 
+  // category → washi tape color
+  const washi =
+    event.category === "sportif" ? "" :
+    event.category === "festif" ? "washi-blue" : "washi-green";
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: (index % 5) * 0.1, duration: 0.5 }}
-      whileHover={{ y: -5 }}
-      className="group bg-white rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 overflow-hidden flex flex-col h-full will-change-transform"
+      initial={{ opacity: 0, y: 24, rotate: 0 }}
+      whileInView={{ opacity: 1, y: 0, rotate: (index % 2 === 0 ? -0.6 : 0.6) }}
+      viewport={{ once: true }}
+      transition={{ delay: (index % 5) * 0.08, duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+      whileHover={{ y: -8, rotate: 0, transition: { duration: 0.3 } }}
+      className="group ticket relative bg-cream flex flex-col h-full will-change-transform"
+      style={{ boxShadow: "4px 4px 0 hsl(var(--earth) / 0.18), 8px 8px 24px hsl(var(--earth) / 0.10)" }}
     >
-      <div className="relative h-56 overflow-hidden bg-slate-100">
-        <div className={cn(
-          "absolute inset-0 bg-gradient-to-br transition-transform duration-700 group-hover:scale-110",
-          event.category === "sportif" ? "from-orange-400/90 to-red-500/90" : 
-          event.category === "inclusif" ? "from-green-400/90 to-emerald-600/90" :
-          "from-blue-400/90 to-indigo-600/90"
-        )} />
-        
-        {/* Abstract pattern overlay */}
-        <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] mix-blend-overlay" />
+      {/* Washi tape */}
+      <span className={cn("washi-tape", washi)} style={{ top: -10, left: "12%" }} aria-hidden />
 
-        {/* Date Badge */}
-        <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm rounded-xl p-2 text-center shadow-lg w-16 group-hover:scale-110 transition-transform z-10">
-          <span className="block text-xs font-bold text-slate-400 uppercase tracking-wider">{date.month}</span>
-          <span className="block text-2xl font-black text-slate-800 leading-none">{date.day}</span>
+      {/* Header band */}
+      <div className="relative h-44 overflow-hidden bg-gradient-to-br from-earth-light/80 to-earth/90">
+        <div className="absolute inset-0 opacity-30 mix-blend-overlay"
+             style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.7' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")" }} />
+
+        {/* Big date stamp */}
+        <div className="absolute top-4 right-4 bg-cream px-3 py-1.5 text-center"
+             style={{ borderRadius: "4px", boxShadow: "2px 2px 0 hsl(var(--earth) / 0.3)", transform: "rotate(4deg)" }}>
+          <span className="block text-[10px] font-marker text-rust uppercase tracking-widest">{date.month}</span>
+          <span className="block text-3xl font-marker text-earth leading-none">{date.day}</span>
         </div>
 
-        {/* Category Badge */}
-        <div className="absolute top-4 left-4 z-10">
-          <Badge variant="secondary" className="gap-2 font-medium capitalize bg-white/90 backdrop-blur text-slate-700 shadow-sm border-0 px-3 py-1">
-             {event.icon ? <span className="text-lg leading-none filter drop-shadow-sm">{event.icon}</span> : getIcon(event.category)} 
-             <span>{event.category}</span>
-          </Badge>
+        {/* Category label painted */}
+        <div className="absolute top-4 left-4">
+          <span className="tag-painted text-base inline-flex items-center gap-1.5">
+            <span className="text-xl leading-none">{event.icon || "🌿"}</span>
+            <span className="capitalize">{event.category}</span>
+          </span>
         </div>
 
-        {/* Bottom Title in Image */}
-        <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/60 to-transparent pt-12">
-           <h3 className="text-2xl font-bold text-white leading-tight group-hover:text-orange-200 transition-colors">
-            {event.title}
-          </h3>
+        {/* Title at bottom over image */}
+        <div className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-earth/90 to-transparent pt-12">
+          <h3 className="font-marker text-2xl text-cream leading-tight">{event.title}</h3>
         </div>
       </div>
 
-      <div className="p-6 flex-1 flex flex-col">
-        <div className="flex items-center gap-4 text-slate-500 text-sm mb-4">
-          <div className="flex items-center gap-1.5">
-             <Clock className="w-4 h-4 text-orange-500" />
-             <span>{date.full}</span>
-          </div>
+      {/* Body */}
+      <div className="p-5 flex-1 flex flex-col">
+        <div className="flex items-center gap-3 text-earth/70 text-sm mb-3 font-camping text-lg">
+          <Clock className="w-4 h-4 text-orange" />
+          <span>{date.full}</span>
           {event.isNight && (
-             <div className="flex items-center gap-1.5 text-indigo-500 font-medium">
-               <Moon className="w-4 h-4" />
-               <span>Nocturne</span>
-             </div>
+            <span className="inline-flex items-center gap-1 text-sky">
+              <Moon className="w-4 h-4" /> nuit
+            </span>
           )}
         </div>
 
-        <p className="text-slate-600 mb-6 flex-1 line-clamp-3 leading-relaxed">
+        <p className="text-foreground/80 mb-4 flex-1 line-clamp-3 leading-relaxed font-body">
           {event.description}
         </p>
 
-        <div className="flex items-center justify-between pt-4 border-t border-slate-50 mt-auto">
+        {/* Perforated divider */}
+        <div className="border-t-2 border-dashed border-earth/25 my-2" />
+
+        <div className="flex items-center justify-between pt-2">
           {event.location && (
-            <div className="flex items-center gap-1.5 text-sm text-slate-500 font-medium bg-slate-50 px-2 py-1 rounded-md">
-              <MapPin className="w-3.5 h-3.5" />
-              <span className="truncate max-w-[140px]">{event.location}</span>
+            <div className="flex items-center gap-1.5 text-sm text-earth/70 font-camping text-lg">
+              <MapPin className="w-4 h-4 text-nature" />
+              <span className="truncate max-w-[160px]">{event.location}</span>
             </div>
           )}
           {!isPast && (
-            <Button variant="ghost" className="text-orange-600 hover:text-orange-700 hover:bg-orange-50 px-2 hover:px-3 transition-all gap-1 font-semibold group/btn">
-              S'inscrire 
+            <button className="btn-audio !text-base group/btn">
+              S'inscrire
               <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-            </Button>
+            </button>
           )}
         </div>
       </div>
     </motion.div>
   );
 };
+
 
 // ... existing code ...
 const Evenements = () => {

@@ -1,7 +1,7 @@
 // Script pour insérer les événements bruts dans la base MongoDB
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import Event from './src/models/Event.js';
+import Event from './models/Event.js';
 
 dotenv.config();
 

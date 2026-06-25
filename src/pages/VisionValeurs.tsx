@@ -157,16 +157,24 @@ const VisionValeurs = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
             {adnRyzom.map((item, index) => (
               <ScrollReveal key={item.word} delay={index * 150}>
-                <div className="text-center p-6 rounded-2xl bg-primary-foreground/5 backdrop-blur-sm hover:bg-primary-foreground/10 transition-all duration-500 group">
-                  <h3 className="font-display text-3xl md:text-4xl font-bold text-orange mb-3 group-hover:scale-110 transition-transform">
+                <div
+                  className="text-center p-6 group bg-cream/95 border border-cream/40"
+                  style={{
+                    borderRadius: "5px",
+                    transform: `rotate(${index % 2 === 0 ? "-0.8deg" : "0.8deg"})`,
+                    boxShadow: "3px 3px 0 hsl(var(--earth) / 0.25)",
+                  }}
+                >
+                  <h3 className="font-marker text-3xl md:text-4xl text-orange mb-3 group-hover:scale-110 transition-transform">
                     {item.word}
                   </h3>
-                  <p className="font-body text-primary-foreground/80 leading-relaxed">
+                  <p className="font-body text-earth/80 leading-relaxed">
                     {item.description}
                   </p>
                 </div>
               </ScrollReveal>
             ))}
+
           </div>
         </div>
       </section>
@@ -211,21 +219,17 @@ const VisionValeurs = () => {
         </div>
       </section>
 
-      {/* Citation finale */}
+      {/* Citation finale - typewriter */}
       <section className="py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
-          <ScrollReveal>
-            <blockquote className="max-w-4xl mx-auto text-center">
-              <p className="font-display text-3xl md:text-5xl text-earth leading-relaxed mb-8">
-                « Ensemble, nous transformons l'impossible en souvenirs inoubliables. »
-              </p>
-              <footer className="font-body text-lg text-muted-foreground">
-                — L'équipe RYZ'ÔM
-              </footer>
-            </blockquote>
-          </ScrollReveal>
+          <TypewriterQuote
+            text="Ensemble, nous transformons l'impossible en souvenirs inoubliables."
+            author="L'équipe RYZ'ÔM"
+            className="!text-3xl md:!text-4xl max-w-4xl"
+          />
         </div>
       </section>
+
 
       <Footer />
     </main>

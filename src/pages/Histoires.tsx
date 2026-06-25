@@ -261,7 +261,7 @@ const Histoires = () => {
                   return (
                     <ScrollReveal key={story._id} delay={(index % 4) * 50} duration={0.4}>
                       <article
-                        className="card-article group h-full flex flex-col bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100"
+                        className="card-handmade group h-full flex flex-col overflow-hidden"
                         style={{ '--rotation': '0deg' } as React.CSSProperties}
                       >
                         {/* Image with vintage treatment */}
@@ -271,17 +271,17 @@ const Histoires = () => {
                             alt={story.title}
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                             onError={(e) => {
-                                // Fallback image si l'image ne charge pas
                                 e.currentTarget.src = getSmartDefaultImage(story.tags || story.tagIds);
                             }}
                           />
-                          <div className="absolute top-4 left-4 z-10">
-                             <span className="px-3 py-1 bg-white/90 backdrop-blur rounded-full text-xs font-bold text-earth uppercase tracking-wider shadow-sm">
+                          <div className="absolute top-3 left-3 z-10">
+                             <span className="chip-paper chip-orange">
                                 {badge}
                              </span>
                           </div>
                           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60" />
                         </div>
+
 
                         {/* Content - Journal style */}
                         <div className="p-6 flex flex-col flex-1 transform translate-y-0 transition-transform">

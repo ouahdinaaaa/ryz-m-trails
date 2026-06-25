@@ -63,9 +63,6 @@ export function Footer() {
           <p className="text-primary-foreground/60 text-sm font-body">
             © 2024 RYZ'ÔM. Tous droits réservés.
           </p>
-          <p className="flex items-center gap-2 text-sm font-body">
-            Fait avec <Heart size={16} className="text-orange fill-orange" /> pour l'inclusion
-          </p>
         </div>
       </div>
     </footer>

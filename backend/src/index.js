@@ -31,9 +31,7 @@ app.get('/health', (req, res) => {
 });
 
 const PORT = process.env.PORT || 4000;
-const MONGO_URI = 'mongodb+srv://aouahdina1639_db_user:Natsume1639@cluster0.zgq4nd9.mongodb.net/ryzom?retryWrites=true&w=majority&appName=Cluster0';
-
-
+const MONGO_URI = process.env.MONGO_URI;
 
 mongoose.connect(MONGO_URI)
   .then(() => {

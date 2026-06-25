@@ -18,7 +18,6 @@
 /* Mobile: drastically tone down grain to avoid "broken TV" effect */
 @media (max-width: 768px) {
   .grain-overlay {
-    opacity: 0.15 !important;
     background-size: 280px 280px;
     mix-blend-mode: multiply;
   }

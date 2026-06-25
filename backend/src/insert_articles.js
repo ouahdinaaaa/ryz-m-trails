@@ -4,7 +4,7 @@ import Article from './models/Article.js';
 import dotenv from 'dotenv';
 dotenv.config();
 
-const MONGO_URI = 'mongodb+srv://aouahdina1639_db_user:Natsume1639@cluster0.zgq4nd9.mongodb.net/ryzom?retryWrites=true&w=majority&appName=Cluster0';
+const MONGO_URI = process.env.MONGO_URI;
 
 const articles = [
   {

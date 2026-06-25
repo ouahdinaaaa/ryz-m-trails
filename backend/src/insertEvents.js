@@ -5,7 +5,7 @@ import Event from './models/Event.js';
 
 dotenv.config();
 
-const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/ryz';
+const MONGO_URI ='mongodb+srv://aouahdina1639_db_user:Natsume1639@cluster0.zgq4nd9.mongodb.net/ryzom?retryWrites=true&w=majority&appName=Cluster0';
 
 const events = [
   {
